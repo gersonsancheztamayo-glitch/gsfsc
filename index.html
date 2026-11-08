@@ -896,6 +896,7 @@ body.pfo-run:not(.cli-hide):not(.ph-open) #clibtn,body.pfo-run:not(.cli-hide):no
 .gsca input[type=range]{padding:0;border:0;margin-top:10px;accent-color:#002EFF}
 .gstabs{overflow-x:auto;flex-wrap:nowrap;white-space:nowrap;padding-bottom:4px}
 .gsca small{display:block;margin-top:2px}.gscah small{display:inline}
+.gsq1{margin:0 12px 10px}.gsq1 button{width:100%;background:#ffffff14;border:1px solid #ffffff33;border-radius:12px;color:#fff;padding:10px;font:inherit;font-size:14px;cursor:pointer}.gsh{font-size:11px;color:#8a5a00}
 </style>
 
 <div class="shell" data-tab="cel">
@@ -1167,8 +1168,7 @@ function osHtml(){
     <button type="button" data-os="tel"><span class="ai" style="background:#2e9d4a">📞</span>Teléfono</button>
     <button type="button" data-os="wsp"><span class="ai" style="background:#25d366">💬${S.supUnread?`<span class="bd">${S.supUnread}</span>`:""}</span>WhatsApp</button>
     <button type="button" data-os="speed"><span class="ai" style="background:#141526;color:#7cf">⏱</span>Speedtest</button>
-    <button type="button" data-os="mochila"><span class="ai" style="background:#6d4c41">🎒</span>Mochila</button>
-    <button type="button" data-os="chrome"><span class="ai" style="background:#fff;color:#1a73e8">🌐</span>Chrome</button>
+        <button type="button" data-os="chrome"><span class="ai" style="background:#fff;color:#1a73e8">🌐</span>Chrome</button>
     <button type="button" data-os="galeria"><span class="ai" style="background:#f57c00">🖼</span>Galería</button></div>
     ${S.wifi?`<div class="oshint">📶 Conectado a ${esc(S.wifi.ssid)}</div>`:""}
     <div class="oshint">Usa Atrás para retroceder e Inicio para volver a esta pantalla desde cualquier aplicación.</div></div>`;
@@ -2486,7 +2486,7 @@ document.addEventListener("click",e=>{
   if(A==="desactivarRuta"){const t=tech(S.tech);if(actsOf(t.id).some(x=>!cerrada(x)))return toast("Aún tienes actividades abiertas. Ciérralas antes de desactivar la ruta.");actsOf(t.id).filter(x=>!repOk(x)).forEach(x=>S.day.pen.push("No reportó a TCP el cierre de la OT "+x.ordenTrabajo));t.ruta=false;t.rutaFin=hhmm(S.clock);actsOf(t.id).forEach(x=>hist(x,"Ruta desactivada"));render();return toast("Ruta desactivada (aparece «Reactivar ruta»). Para terminar la jornada, cierra sesión: menú ☰ → Cerrar sesión.");}
   if(A==="verCierre")return cierreJornada();
   if(A==="cajaEsperar"){const a=cur();if(a&&a.cajaAck&&!a.cajaAck.res){adv(Math.max(1,a.cajaAck.due-S.clock));}render();return;}
-  if(A==="activarRuta"){const t=tech(S.tech);if(mochNext())return sheet(`<h3>Falta revisar</h3><p>Antes de activar la ruta revisa tu mochila y la camioneta ítem por ítem en la escena de campo.</p>`,[{t:"Entendido",pri:true,fn:()=>{closeSheet();S.mochOpen=1;render();}}]);if(!S.day.gps&&LV()>1){render();return toast("GPS apagado: enciéndelo con el ícono 📍 de la barra superior y activa tu ruta.");}if(!S.day.gps)return sheet(`<h3>GPS apagado</h3><p>Sin GPS la trazabilidad queda incompleta y el sistema puede bloquear acciones. Enciéndelo con el ícono 📍 de la barra superior (o aquí) y activa tu ruta.</p>`,[{t:"Encender GPS",pri:true,fn:()=>{S.day.gps=1;closeSheet();toast("GPS encendido");}}]);if(S.clock>455+(S.day.prepMin||0)&&!S.day.tardePen){S.day.tardePen=1;S.day.pen.push("Activó la ruta tarde ("+hhmm(S.clock)+")");setTimeout(()=>supSay("Activaste tu ruta a las "+hhmm(S.clock)+". La hora de inicio es 07:30; que no se repita."),300);}t.ruta=true;t.rutaHora=hhmm(S.clock);t.rutaMin=S.clock;actsOf(t.id).forEach(x=>hist(x,"Ruta activada"));render();return toast("Ruta activada");}
+  if(A==="activarRuta"){const t=tech(S.tech);if(mochNext())return sheet(`<h3>Falta revisar</h3><p>Antes de activar la ruta revisa tu mochila y la camioneta ítem por ítem: toca la camioneta en la escena de campo y elige «Revisar la mochila».</p>`,[{t:"Entendido",pri:true,fn:()=>{closeSheet();S.mochOpen=1;render();}}]);if(!S.day.gps&&LV()>1){render();return toast("GPS apagado: enciéndelo con el ícono 📍 de la barra superior y activa tu ruta.");}if(!S.day.gps)return sheet(`<h3>GPS apagado</h3><p>Sin GPS la trazabilidad queda incompleta y el sistema puede bloquear acciones. Enciéndelo con el ícono 📍 de la barra superior (o aquí) y activa tu ruta.</p>`,[{t:"Encender GPS",pri:true,fn:()=>{S.day.gps=1;closeSheet();toast("GPS encendido");}}]);if(S.clock>455+(S.day.prepMin||0)&&!S.day.tardePen){S.day.tardePen=1;S.day.pen.push("Activó la ruta tarde ("+hhmm(S.clock)+")");setTimeout(()=>supSay("Activaste tu ruta a las "+hhmm(S.clock)+". La hora de inicio es 07:30; que no se repita."),300);}t.ruta=true;t.rutaHora=hhmm(S.clock);t.rutaMin=S.clock;actsOf(t.id).forEach(x=>hist(x,"Ruta activada"));render();return toast("Ruta activada");}
   if(A==="mapa")return push("mapa");
   if(A==="actividades")return push("actividades");
   if(A==="avance")return push("form",a.id,{k:"ia"});
@@ -3050,7 +3050,7 @@ function hudHtml(a){const ab=a&&a.estado==="iniciada"&&a.ultimoAvance!=null,mm=a
 const ZT={truck:"Camioneta",port:"Tu puerto",tend:"Tendido externo",duct:"Ductos del montante",dog:"Perro",house:"Domicilio del cliente",wall:"Paredes y recorrido",spot:"Lugar del equipo",roseta:"Roseta",router:"ONT / router",floor:"Área de trabajo",exit:"Puerta"};
 function fmenuHtml(a){const M=S.fmenu;if(!M)return "";const ZA=a?zActs(a):{},z=M.z,T=a?a.red.tipo:"CTO",c=a?a.fis.chk||{}:{};let it=[],info="";
   const fb=L=>L.map(([k,l])=>`<button type="button" data-fis="${k}">${esc(l)}</button>`).join("");
-  if(z==="truck"){it.push(fb(ZA.truck||[]));it.push(`<button type="button" data-os="mochila">🎒 Revisar la mochila (en el celular)</button>`);if(S.cam&&!S.cam.rev)it.push(`<button type="button" data-fx="cam">🚐 Revisar la camioneta (5 min)</button>`);}
+  if(z==="truck"){it.push(fb(ZA.truck||[]));it.push(`<button type="button" data-mopen="1">🎒 Revisar la mochila</button>`);if(S.cam&&!S.cam.rev)it.push(`<button type="button" data-fx="cam">🚐 Revisar la camioneta (5 min)</button>`);}
   else if(z==="box"){it.push(fb([...(ZA.box||[]),...(ZA.port||[])]));if(c.sub&&!(a.fis.cerrada&&!a.fis.drop))it.push(`<button type="button" data-fv="caja">🔍 Ver la ${T} de cerca</button>`);}
   else if(z==="pv"){const p=+M.p,st=a&&a.net[p-1]?a.net[p-1].st:"";info=st==="ACT"?"Puerto de un vecino con su drop conectado: no se toca.":"Puerto libre, pero no es tu puerto asignado (P"+a.red.puerto+").";}
   else if(z==="house"){if(a&&a.cli.done.ingreso===1)it.push(`<button type="button" data-fv="casa">🏠 Entrar: ver el interior</button>`);else info=a&&a.cli.done.ingreso==="no"?"El cliente no autoriza el ingreso.":"Aún no tienes permiso del cliente para ingresar.";}
@@ -3284,10 +3284,10 @@ function formHint(a,k){const ex=tendExp(a),p0=(a.postes||[]).find(x=>x.dueno!=="
   case "escIni":return "Inicia la actividad de Escalamiento técnico.";
   default:return "Completa el formulario y toca Enviar.";}}
 function prepGuide(){const c=S.cam||{};
-  {const it=mochNext();if(it){if(!S.mochOpen)return ["[data-mopen]","Antes de salir revisa tu mochila y la camioneta ítem por ítem (en la escena de campo)."];if((S.mt19||"eq")!==it.tab)return [`[data-mt19="${it.tab}"]`,"Revisa la pestaña "+MT19.find(x=>x[0]===it.tab)[1]+"."];return [`[data-mrv="${it.id}"]`,"Revisa: "+it.l+"."];}
+  {const it=mochNext();if(it){if(!S.mochOpen)return truckGuide("Antes de salir, toca la camioneta y elige «Revisar la mochila»: revisa tu mochila y la camioneta ítem por ítem.");if((S.mt19||"eq")!==it.tab)return [`[data-mt19="${it.tab}"]`,"Revisa la pestaña "+MT19.find(x=>x[0]===it.tab)[1]+"."];return [`[data-mrv="${it.id}"]`,"Revisa: "+it.l+"."];}
    if(c.prob)return ["[data-os=camfix]","La camioneta tiene un problema ("+CAM_P[c.prob]+"): resuélvelo antes de salir."];}
   if(S.os==="mochila"){if(!S.mochVista)return null;if(!c.rev)return S.mtab!=="cam"?["[data-mtab=cam]","Revisa la camioneta (pestaña Camioneta)."]:["[data-os=camrev]","Revisa la camioneta antes de salir."];if(c.prob)return S.mtab!=="cam"?["[data-mtab=cam]","La camioneta tiene un problema."]:["[data-os=camfix]","Resuelve el problema de la camioneta antes de salir."];}
-  if(!S.mochVista||!c.rev||c.prob){if(S.os==="home")return ["[data-os=mochila]","Antes de activar la ruta, revisa tu mochila (equipos, materiales, EPP) y la camioneta."];if(S.os==="mochila")return null;return homeGuide("Antes de activar la ruta, revisa tu mochila y la camioneta");}
+  if(!S.mochVista||!c.rev||c.prob){if(S.os==="mochila")return null;return truckGuide("Antes de activar la ruta, revisa tu mochila y la camioneta: toca la camioneta y elige «Revisar la mochila».");}
   if(faltaMochila(S.mochila).length){const r=logGuide("stock","Te falta material: pide reposición a Logística antes de activar la ruta.");if(r)return r;}
   return null;}
 function tutCalc(){const t=tech(S.tech);
@@ -3605,7 +3605,7 @@ function prepOverOld(){const t=tech(S.tech);if(!t||t.ruta||t.rutaFin||S.manejand
   const listo=S.mochVista&&c.rev&&!c.prob&&!fm.length;
   return `<div class="prep18" role="region" aria-label="Antes de salir"><div class="h">Antes de salir</div>
   ${row("☕","Desayuno",S.day.desayuno?"✓ Desayunaste":S.day.sinDesayuno?"✗ Saliste sin desayunar":"—")}
-  ${row("🎒","Mochila",!S.mochVista?"Sin revisar":fm.length?"⚠ Falta: "+esc(fm.slice(0,3).join(", ")):"✓ Completa",!S.mochVista?`<button type="button" data-os="mochila">Revisar mochila</button>`:fm.length?`<button type="button" data-os="wsp">Pedir reposición a Logística</button>`:"")}
+  ${row("🎒","Mochila",!S.mochVista?"Sin revisar":fm.length?"⚠ Falta: "+esc(fm.slice(0,3).join(", ")):"✓ Completa",!S.mochVista?"":fm.length?`<button type="button" data-os="wsp">Pedir reposición a Logística</button>`:"")}
   ${row("🚐","Camioneta",!c.rev?"Sin revisar":c.prob?"⚠ "+esc(CAM_P[c.prob]||"Problema"):"✓ Conforme",!c.rev?`<button type="button" data-os="camrev">Revisar · 5 min</button>`:c.prob?`<button type="button" data-os="camfix">Resolver · 15 min</button>`:"")}
   <div class="f" style="color:${listo?"#2e7d32":"#8a5a00"}">${listo?"✓ Todo listo: activa tu ruta en Field Service.":"Completa lo pendiente y activa tu ruta en Field Service."}</div></div>`;}
 /* --- Celular (APK): campo en horizontal, OFSC en vertical; botón 📱 si la rotación está bloqueada --- */
@@ -3714,7 +3714,7 @@ function mochCount(){const M=moch19(),R=S.mrev||{};let n=0,t=0;MT19.forEach(([k]
 function prepOver(){const t=tech(S.tech);if(!t||t.ruta||t.rutaFin||S.manejando||!S.mochila||S.alarm&&S.alarm.phase)return "";const c=S.cam||{},fm=faltaMochila(S.mochila),[n,tt]=mochCount();
   if(!S.mochOpen){const listo=n===tt&&!c.prob&&!fm.length;return `<div class="prep18" role="region" aria-label="Antes de salir"><div class="h">Antes de salir</div>
     <div class="pr"><span>☕</span><b>Desayuno</b><span class="s">${S.day.desayuno?"✓ Desayunaste":S.day.sinDesayuno?"✗ Saliste sin desayunar":"—"}</span></div>
-    <div class="pr"><span>🎒</span><b>Mochila y camioneta</b><span class="s">${n}/${tt} revisados${fm.length?" · ⚠ faltan "+fm.length:""}${c.prob&&n===tt?" · ⚠ camioneta":""}</span><button type="button" data-mopen="1">${n<tt?"Revisar ítem por ítem":"Ver revisión"}</button></div>
+    <div class="pr"><span>🎒</span><b>Mochila y camioneta</b><span class="s">${n}/${tt} revisados${fm.length?" · ⚠ faltan "+fm.length:""}${c.prob&&n===tt?" · ⚠ camioneta":""}</span>${n<tt?`<span class="s" style="color:#8a5a00;font-weight:700;white-space:nowrap">👉 Toca la camioneta</span>`:""}</div>
     <div class="f" style="color:${listo?"#2e7d32":"#8a5a00"}">${listo?"✓ Todo listo: activa tu ruta en Field Service.":n<tt?"Revisa cada ítem antes de activar la ruta.":"Resuelve lo marcado con ✗ antes de salir."}</div></div>`;}
   const M=moch19(),R=S.mrev||{},tab=S.mt19||"eq";
   const rows=M[tab].map(([id,l,ok])=>{const r=R[id],st=r==null?"—":ok?(r==="x"?"✓ repuesto":"✓"):"✗ falta";return `<div class="mr ${r==null?"":ok?"ok":"bad"}">${r==null?`<button type="button" data-mrv="${id}">Revisar</button>`:`<i class="mrs"></i>`}<span>${esc(l)}</span><b>${st}</b></div>`;}).join("");
@@ -4007,7 +4007,7 @@ try{render();}catch(e){}
   try{if(LV()!==1||S.sheet||!S.mochila)return r0;const a=chatAct(),t=tech(S.tech);
     if(a&&a.estado==="iniciada"&&t&&t.ruta&&!a.done.inv){const fm=faltaMochila(S.mochila);
       if(fm.length){const txt="Te falta "+(fm[0]==="ONT"?"la ONT":fm.join(", "))+" en la mochila: pídela a Logística por WhatsApp.";
-        if(!S.faltaVisto){if(S.os==="home")return ["[data-os=mochila]","Revisa tu mochila: algo no está completo."];if(S.os==="mochila")return null;return homeGuide("Revisa tu mochila: algo no está completo");}
+        if(!S.faltaVisto){if(S.os==="mochila")return null;return truckGuide("Te falta material: toca la camioneta y revisa tu mochila.");}
         const r=logGuide("mat",txt);if(r)return r;}}}catch(e){}
   return r0;};}
 
@@ -4092,6 +4092,38 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-gs]");if(!
   else if(k==="poajus"){const c=GS.data.cfg||{};gsPoCall({accion:"config",avance_min:GS.cfgA??c.avance_min??20,limite_pen:GS.cfgL??c.limite_pen??3},r=>{if(r.avance_min)GSCFG.avance_min=r.avance_min;if(r.limite_pen!=null)GSCFG.limite_pen=r.limite_pen;GS.cfgA=GS.cfgL=undefined;GS.msg="Ajustes guardados.";});}
 },true);
 try{gsFlush();}catch(e){}
+
+/* ============ v39 · mochila solo desde la camioneta, pestaña Cliente cerrada, cerrar sesión ============ */
+function truckGuide(txt){if(S.fmenu&&S.fmenu.z==="truck")return ["[data-mopen]",txt];return ['.fhot[data-fz="truck"]',txt];}
+/* al abrir la mochila (desde la camioneta) se muestra el celular */
+{const _r=render;render=function(){_r.apply(this,arguments);try{
+  if(S.os==="mochila"&&!document.body.classList.contains("ph-open")&&!S._mochPh){S._mochPh=1;pfoPhone(true);}
+  if(S.os!=="mochila")S._mochPh=0;
+  /* la conversación con el cliente siempre arranca cerrada */
+  const ca=(S.acts||[]).find(x=>!cerrada(x)),id=ca?ca.id:"-";
+  if(S._cliAct!==id){S._cliAct=id;if(!S.cliHide)S.cliHide=true;}
+  if(S.cliHide==null)S.cliHide=true;
+}catch(e){}};}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-mopen]");if(!t)return;try{if(S.fmenu)S.fmenu=null;if(faltaMochila(S.mochila).length)S.faltaVisto=1;render();}catch(err){}},true);
+/* cortina: cerrar sesión */
+{const _sh=shadeHtml;shadeHtml=function(){let h=_sh.apply(this,arguments);
+  return h.replace('<div class="shl">','<div class="gsq1"><button type="button" data-gs="salir2">⎋ Cerrar sesión</button></div><div class="shl">');};}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-gs=salir2]");if(!t)return;
+  try{localStorage.removeItem(SAVE_K);localStorage.removeItem("gsfsc-id");}catch(err){}
+  GS.id=null;GS.lv=0;GS.ov=null;S.shade=false;document.body.classList.remove("ph-open");const o=document.getElementById("gsov");if(o)o.remove();
+  init(true);S.cliHide=true;render();},true);
+try{S.cliHide=true;render();}catch(e){}
+
+/* guía naranja: si la respuesta está en la conversación con el cliente y la pestaña está cerrada, primero abrirla */
+{const _tt=tutTarget;tutTarget=function(){const r=_tt.apply(this,arguments);
+  try{if(r&&typeof r[0]==="string"&&/^\[data-cli=/.test(r[0])&&S.cliHide){if(document.body.classList.contains("ph-open"))return ["#phbtn","Cierra el celular (botón 📱) y abre la pestaña «Cliente» para conversar con él."];return ["#clibtn","Abre la pestaña «Cliente» (a la derecha) para conversar con él. "+r[1]];}}catch(e){}
+  return r;};}
+
+/* guía naranja: si el paso está dentro del celular y el celular está cerrado, primero abrirlo */
+{const _tt=tutTarget;tutTarget=function(){const r=_tt.apply(this,arguments);
+  try{if(r&&typeof r[0]==="string"&&r[0]!==NONE&&!document.body.classList.contains("ph-open")){const b=document.getElementById("phbtn");
+      if(b&&!b.hidden&&b.getClientRects().length){const el=document.querySelector(r[0]);if(el&&el.closest("#scr")&&!el.getClientRects().length)return ["#phbtn","Abre el celular (botón 📱). "+r[1]];}}}catch(e){}
+  return r;};}
 
 try{if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});}catch(e){}
 </script>
