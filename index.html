@@ -3845,14 +3845,16 @@ const gsArr=r=>Array.isArray(r)?r:(r&&typeof r==="object"?(Object.values(r).find
 const gsSave=()=>{try{localStorage.setItem("gsfsc-id",JSON.stringify(GS.id));}catch(e){}};
 function gsNombre(n){return String(n||"").trim().toUpperCase().slice(0,30);}
 
+function gsIosTip(){try{const ios=/iPhone|iPad|iPod/.test(navigator.userAgent),sa=navigator.standalone||matchMedia("(display-mode:standalone)").matches;
+  return ios&&!sa?'<p class="gspr">📲 En iPhone: toca <b>Compartir</b> (cuadrado con flecha) → <b>Añadir a pantalla de inicio</b> para instalarla.</p>':"";}catch(e){return "";}}
 /* pantalla de entrada: documento de identidad */
 function gsLoginHtml(){return `<div class="selp" role="dialog" aria-modal="true" aria-labelledby="selT"><div class="selc">
   <h1 id="selT">GSFSC</h1><p class="sub">Gaming Sim Field Service Cloud · simulador de campo FTTH para especialistas técnicos · datos inventados · tiempo simulado</p>
   <label class="sf">Documento de identidad..<input id="gsDni" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="Escribe tu DNI"></label>
   <button type="button" class="selgo" data-gs="login">Ingresar</button>
   <p id="gsLm" class="gslm" role="status"></p>
-  <div class="gslk"><button type="button" data-gs="rank">🏆 Ranking</button><button type="button" data-gs="cred">⭐ Créditos</button><button type="button" data-gs="po">PO (Product Owner)</button></div>
-  <small class="gspr">Solo ingresan especialistas registrados. Tu documento no se muestra en pantalla: solo tu nombre.</small></div></div>`;}
+  <div class="gslk"><button type="button" data-gs="rank">🏆 Ranking</button><button type="button" data-gs="cred">⭐ Créditos</button></div>
+  ${gsIosTip()}<small class="gspr">Solo ingresan especialistas registrados. Tu documento no se muestra en pantalla: solo tu nombre.</small></div></div>`;}
 {const _s=selHtml;selHtml=function(){if(!GS.id)return gsLoginHtml();let h=_s.apply(this,arguments);
   return h.replace(/<label class="sf">Tu nombre<input[^>]*><\/label>/,`<div class="sf gshi"><span>Hola, <b>${esc(GS.id.nombre)}</b></span><small>Niveles superados: ${GS.lv}/3 <button type="button" data-gs="salir">no soy yo</button></small><div class="gslk"><button type="button" data-gs="rank">🏆 Ranking</button><button type="button" data-gs="cred">⭐ Créditos</button></div></div>`);};}
 
@@ -3933,6 +3935,7 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-gs]");if(!
   if(k==="com"||k==="cred"||k==="rank"||k==="po"){gsOpen(k);return;}
   if(k==="salir"){GS.id=null;GS.lv=0;try{localStorage.removeItem("gsfsc-id");}catch(err){}render();return;}
   if(k==="login"){const d=((document.getElementById("gsDni")||{}).value||"").trim(),m=document.getElementById("gsLm");
+    if(/^\d{4}$/.test(d)){if(m)m.textContent="Verificando…";gsApi("/po",{clave:d,accion:"login"}).then(()=>{GS.clave=d;GS.tab="h";gsOpen("po");}).catch(()=>{const m2=document.getElementById("gsLm");if(m2)m2.textContent="Documento no autorizado.";});return;}
     if(!/^\d{8}$/.test(d)){if(m)m.textContent="Escribe tu documento de 8 dígitos.";return;}
     if(m)m.textContent="Verificando…";
     gsApi("/login",{dni:d}).then(r=>{GS.id={dni:d,nombre:gsNombre(r.nombre),lv:+r.niveles_completados||0};GS.lv=GS.id.lv;gsSave();try{setJugador(GS.id.nombre);}catch(err){}render();})
