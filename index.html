@@ -842,7 +842,7 @@ body.pfo-run:not(.cli-hide):not(.ph-open) #clibtn,body.pfo-run:not(.cli-hide):no
 .gslk button,.gshi small button{background:#e8edff;color:#002EFF;border:1px solid #b9c3ff;border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
 .gshi{color:#10163a;display:flex;flex-direction:column;gap:4px}.gshi span{font-size:18px}.gshi small{opacity:.85}.gshi small button{padding:2px 8px;margin-left:6px;font-size:12px}
 .gslm{color:#c62a00;min-height:20px;margin:8px 0 0;font-size:14px}.gspr{display:block;color:#5a6390;margin-top:12px}
-.gsq{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 12px}
+.gsq{align-self:start;height:auto;flex:none;align-content:start;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 12px}
 .gsq button{background:#ffffff1c;border:1px solid #ffffff40;border-radius:12px;color:#fff;font-size:20px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
 .gsq button:first-child{background:#FF3D00;border-color:#FF3D00}.gsq small{font-size:11px;line-height:1.1;text-align:center}
 #gsov{position:fixed;inset:0;z-index:9800}
@@ -867,6 +867,35 @@ body.pfo-run:not(.cli-hide):not(.ph-open) #clibtn,body.pfo-run:not(.cli-hide):no
 .gsca{background:#fff;border:1px solid #d6dcff;border-radius:12px;padding:10px 12px;margin-bottom:10px}.gsca p{margin:6px 0}.gscah{display:flex;gap:8px;align-items:center}
 .gsac{display:flex;gap:6px;margin-top:8px}.gsac button,.gsmini,.gsad button{flex:1;background:#002EFF;color:#fff;border:0;border-radius:10px;padding:9px;font:inherit;font-size:13px;cursor:pointer}.gsac button:last-child{background:#FF3D00}.gsmini{flex:0 0 auto}
 .gsad{display:grid;grid-template-columns:110px 1fr auto;gap:6px}
+
+#gsov.inph{position:absolute;inset:0;z-index:95}
+.gsstar{background:#000 radial-gradient(ellipse at 50% 120%,#0a1a66 0,#000 60%);overflow:hidden}
+.gsstar:before{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,#0000),radial-gradient(1px 1px at 78% 12%,#fff,#0000),radial-gradient(1.5px 1.5px at 40% 40%,#fff9,#0000),radial-gradient(1px 1px at 88% 55%,#fff,#0000),radial-gradient(1.5px 1.5px at 22% 72%,#fff,#0000),radial-gradient(1px 1px at 62% 82%,#fff9,#0000),radial-gradient(1px 1px at 8% 90%,#fff,#0000),radial-gradient(1.5px 1.5px at 94% 30%,#fff9,#0000),radial-gradient(1px 1px at 52% 8%,#fff,#0000),radial-gradient(1px 1px at 33% 58%,#fff,#0000)}
+.gsxs{position:absolute;left:10px;top:calc(10px + env(safe-area-inset-top,0px));z-index:5}
+.gscr{position:absolute;inset:0;perspective:340px;perspective-origin:50% 40%;overflow:hidden;cursor:pointer}
+.gscw{position:absolute;left:9%;right:9%;top:0;color:#FFE81F;text-align:center;transform-origin:50% 100%;transform:rotateX(26deg) translateY(var(--ini,800px));animation:gscrawl 60s linear forwards;font-weight:700}
+.gscw.pau{animation-play-state:paused}
+@keyframes gscrawl{from{transform:rotateX(26deg) translateY(var(--ini,800px))}to{transform:rotateX(26deg) translateY(var(--fin,-2400px))}}
+.gscep{font-size:15px;letter-spacing:.3em;opacity:.9;margin-bottom:14px}.gscw h2{font-size:30px;line-height:1.15;margin:0 0 22px;text-transform:uppercase}
+.gscl{font-size:17px;line-height:1.5;margin:0 0 26px;text-align:justify;text-align-last:center}.gscs{font-size:15px;letter-spacing:.2em;margin:30px 0 20px}
+.gscn{margin:0 0 20px}.gscn b{display:block;font-size:24px;letter-spacing:.04em}.gscn small{font-size:14px;opacity:.85;font-weight:400}
+.gscf{margin-top:40px}.gscfin{font-size:44px;font-weight:800;letter-spacing:.2em;margin:40px 0 160px}
+.gstap{position:absolute;bottom:8px;left:0;right:0;text-align:center;color:#ffffff66;font-size:11px;z-index:4;pointer-events:none}
+.gscmis{position:absolute;left:10px;right:10px;bottom:24px;z-index:4;background:#000a;border:1px solid #ffe81f55;border-radius:10px;padding:6px 10px;color:#ffe81f;font-size:12px;max-height:84px;overflow:auto}
+.gscmis b{display:block;margin-bottom:2px}.gscmis .gse{font-size:10px}
+.gspod{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:8px;align-items:end;margin:12px 0 14px}
+.gsp{position:relative;text-align:center;border-radius:14px 14px 0 0;padding:12px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;background:linear-gradient(#fff,#e8edff);border:1px solid #d6dcff}
+.gsp b{font-size:13px;line-height:1.15;word-break:break-word}.gsp small{font-size:11px;color:#46507d}.gsp i{font-style:normal;font-weight:800;font-size:22px;color:#002EFF}
+.gsp.p1{padding-top:22px;background:linear-gradient(#fff6d6,#ffe9a3);border-color:#ffc83d;min-height:176px}.gsp.p2{min-height:146px}.gsp.p3{min-height:128px}
+.gspod.empty .gsp{opacity:.6}.gsyo{margin-top:12px;text-align:center}
+.gspod.sm{margin:6px 0 10px}.gspod.sm .gsp{padding:8px 3px 6px}.gspod.sm .gsp b{font-size:11px}.gspod.sm .gsp small{font-size:10px}.gspod.sm .gsp i{font-size:16px}
+.gspod.sm .gsp.p1{min-height:118px}.gspod.sm .gsp.p2{min-height:100px}.gspod.sm .gsp.p3{min-height:88px}
+.gsmej{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:6px 0}.gsmej span{background:#eef1ff;border-radius:8px;padding:4px 2px;text-align:center;font-size:10px;color:#8a92b8;display:flex;flex-direction:column}
+.gsmej span.ok{background:#d8f5de;color:#136b25}.gsmej i{font-style:normal;font-weight:800;font-size:12px}
+.gsbar{display:flex;justify-content:space-between;gap:8px;background:#f4f6ff;border-radius:8px;padding:6px 10px;margin-top:6px;font-size:13px}.gsbar i{font-style:normal;font-weight:800;color:#FF3D00}
+.gsca input[type=range]{padding:0;border:0;margin-top:10px;accent-color:#002EFF}
+.gstabs{overflow-x:auto;flex-wrap:nowrap;white-space:nowrap;padding-bottom:4px}
+.gsca small{display:block;margin-top:2px}.gscah small{display:inline}
 </style>
 
 <div class="shell" data-tab="cel">
@@ -1049,7 +1078,7 @@ function phoneBack(){if(S.alarm&&S.alarm.phase)return;if(S.sheet){closeSheet();r
   if(S.os){if(S.os==="wsp"&&S.wspc)S.wspc=null;else if(S.os!=="home")S.os="home";render();return;}
   if(S.logged){if(S.menu||S.drawer){S.menu=false;S.drawer=false;render();return;}pop();}}
 function pop(){if(S.stack.length>1)S.stack.pop();S.menu=false;render();}
-function tick(){tcmCheck();charlaCheck();S.acts.forEach(a=>{if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>20&&!a.avanceVencido&&!(S._bigAdvAt!=null&&S.clock-S._bigAdvAt<5)){a.avanceVencido=true;pen(a,"Informe de avance fuera de los 20 min ("+hhmm(S.clock)+")");}});}
+function tick(){tcmCheck();charlaCheck();S.acts.forEach(a=>{if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>AVL()&&!a.avanceVencido&&!(S._bigAdvAt!=null&&S.clock-S._bigAdvAt<5)){a.avanceVencido=true;pen(a,"Informe de avance fuera de los 20 min ("+hhmm(S.clock)+")");}});}
 function adv(m){if(S&&S.day&&S.day.sinDesayuno&&S.clock>=780&&m>2)m=Math.round(m*1.2);S.clock+=m;if(m>=5)S._bigAdvAt=S.clock;tick();if(runTQ())S._dirty=1;}
 function supSay(txt){S.supChat.push({t:hhmm(S.clock),txt});if(!(S.os==="wsp"&&S.wspc==="sup"))S.supUnread=(S.supUnread||0)+1;notify("Supervisor ET",txt,"sup");}
 function tcmAviso(a,txt,ask){const L=chatList(a,"tcm");if(!L.some(x=>x.sys))L.push({sys:true,t:hhmm(S.clock)});L.push({t:hhmm(S.clock),txt:"Aviso TCM · OT "+a.ordenTrabajo+": "+txt});hist(a,"TCM: "+txt,"bad");
@@ -2670,7 +2699,7 @@ sin_permiso:["El cliente abre, pero no autoriza que entres a su domicilio.","Al 
  nap_lejos:["La CTO asignada está a más de 400 m del cliente.","En la escena y en la ficha winet (distancia).","No tiendas: escala a TCE (plataformas, cambio de recurso) para que te asignen una CTO más cercana.","TCE","Tender más de 400 m de drop externo."],
  cto_averiada:["La CTO está dañada (tapa rota, conectores dañados).","Al revisar la CTO en campo.","Formulario TCE casuística 4: se escala a planta externa y se da fallida «NAP averiada».","TCE","Conectar igual en una caja dañada."],
  interferencia:["El router quedaría junto a artefactos (TV, radio, microondas, licuadora).","En la evaluación interna del lugar elegido.","Explicar que debe quedar libre de artefactos; decide el cliente; anotarlo en Observaciones del Acta.","—","No explicarlo o no anotarlo en el Acta."],
- normal:["Instalación sin problemas.","Todo sale dentro de rango.","Sigue el flujo completo: viaje, NAP, consulta vecino, tendido, inventario, activación, WiFi, acta y cierre asegurado.","No se escala.","Saltarse pasos o el informe de avance cada 20 min."],
+ normal:["Instalación sin problemas.","Todo sale dentro de rango.","Sigue el flujo completo: viaje, NAP, consulta vecino, tendido, inventario, activación, WiFi, acta y cierre asegurado.","No se escala.","Saltarse pasos o el informe de avance cada "+AVL()+" min."],
  cliente_ausente:["Nadie abre en el domicilio.","Al marcar Inicio el cliente no responde.","Llama y escribe al cliente; si no responde, escala a TCP por Help Desk.","TCP","Esperar sin reportar o escalar sin haber llamado."],
  puerto_ocupado:["Tu puerto lo usa otro cliente.","La Consulta vecino 1 muestra tu puerto con otra ONT.","Menú ⋯ → Cambio de puerto a un puerto libre.","No se escala: lo resuelves tú.","Conectar sobre el puerto ocupado: avería al vecino."],
  cto_saturada:["La caja no tiene puertos libres.","Consulta vecino 1: todos los puertos activos.","Formulario TCE (NAP saturada / puerto ocupado) y chat TCE, o WiNET-Cambio Caja desde el menú ⋯ con el motivo correcto: te asignan una caja vecina.","TCE","Conectar sobre un puerto ocupado."],
@@ -2707,7 +2736,7 @@ function penCat(t){return (CATS.find(c=>c[1].test(t))||CATS[5])[0];}
 function penCats(){const o={};actsOf(S.tech).forEach(a=>a.penalidades.forEach(t=>{const c=penCat(t);o[c]=(o[c]||0)+1;}));S.day.pen.forEach(t=>{const c=penCat(t);o[c]=(o[c]||0)+1;});return o;}
 function metricas(){const as=actsOf(S.tech),cl=as.filter(cerrada),comp=as.filter(a=>a.estado==="completada"),arr=as.filter(a=>a.llegoMin!=null),ini=as.filter(a=>a.inicio!=null);
   const pct=(n,d)=>d?Math.round(n/d*100)+"%":"—";const tp=comp.length?Math.round(comp.reduce((s,a)=>s+(a.fin-a.inicio),0)/comp.length):0;
-  return [["Efectividad",pct(comp.length,as.length)],["Puntualidad",pct(arr.filter(a=>a.llegoMin<=a.ventana.fin).length,arr.length)],["Avance cada 20 min",pct(ini.filter(a=>!a.avanceVencido).length,ini.length)],["Cierre Asegurado al 1er intento",pct(as.filter(a=>a.ca.vt&&!a.penalidades.some(t=>/Foto observada|incompleto/.test(t))).length,as.filter(a=>a.ca.vt).length)],["Tiempo promedio",comp.length?Math.floor(tp/60)+"h "+tp%60+"m":"—"],["Satisfacción",as.length?Math.round(as.reduce((s,a)=>s+a.cli.sat,0)/as.length)+"%":"—"],["Órdenes",cl.length+"/"+as.length],["Ayudas usadas",String(S.day.ayudas||0)],["Puntaje último cierre",(S.histLocal&&S.histLocal.length?S.histLocal[S.histLocal.length-1].score:"—")]];}
+  return [["Efectividad",pct(comp.length,as.length)],["Puntualidad",pct(arr.filter(a=>a.llegoMin<=a.ventana.fin).length,arr.length)],["Avance cada "+AVL()+" min",pct(ini.filter(a=>!a.avanceVencido).length,ini.length)],["Cierre Asegurado al 1er intento",pct(as.filter(a=>a.ca.vt&&!a.penalidades.some(t=>/Foto observada|incompleto/.test(t))).length,as.filter(a=>a.ca.vt).length)],["Tiempo promedio",comp.length?Math.floor(tp/60)+"h "+tp%60+"m":"—"],["Satisfacción",as.length?Math.round(as.reduce((s,a)=>s+a.cli.sat,0)/as.length)+"%":"—"],["Órdenes",cl.length+"/"+as.length],["Ayudas usadas",String(S.day.ayudas||0)],["Puntaje último cierre",(S.histLocal&&S.histLocal.length?S.histLocal[S.histLocal.length-1].score:"—")]];}
 function dashHtml(){const t=S.dtab||"hoy";let b="";
   if(t==="hoy"){const c=penCats(),mx=Math.max(1,...Object.values(c));const all=[...actsOf(S.tech).flatMap(a=>a.penalidades),...S.day.pen];const cnt={};all.forEach(x=>cnt[x]=(cnt[x]||0)+1);const top=Object.entries(cnt).sort((x,y)=>y[1]-x[1]).slice(0,5);
     b=badgesHtml()+`<div class="kpis">${metricas().map(([l,v])=>`<div class="kpi"><small>${esc(l)}</small><b>${esc(v)}</b></div>`).join("")}</div>
@@ -2760,7 +2789,7 @@ const TIPS=[
  [/manejando/i,"Usar el celular al manejar es una falta grave de seguridad vial.","Estaciónate antes de responder mensajes o llamadas."],
  [/ATS/i,"El ATS debe reflejar los riesgos reales del lugar.","Observa la escena y marca en Fuerza terreno 2 todos los riesgos presentes, y solo esos."],
  [/uniforme|EPP/i,"La imagen y la seguridad empiezan por el uniforme completo.","Revisa la mochila (EPP) antes de salir y toma la foto con todo puesto."],
- [/avance/i,"Sin avance cada 20 min, la torre no sabe qué estás haciendo.","Envía Informar Avance cada 20 minutos con lo que realmente haces."],
+ [/avance/i,"Sin avance cada "+AVL()+" min, la torre no sabe qué estás haciendo.","Envía Informar Avance cada "+AVL()+" minutos con lo que realmente haces."],
  [/tarde|ventana|alarma/i,"La puntualidad afecta al cliente y a toda tu ruta.","Levántate a la primera alarma, activa la ruta a las 07:30 y avisa si vas a llegar tarde."],
  [/Asignación de recursos/i,"Sin revisar la asignación puedes ir a la caja equivocada.","Abre Información WiNET → Asignación de recursos antes de ir a la CTO."],
  [/Consulta vecino/i,"La respuesta del CEV te dice si tu puerto y los vecinos están bien.","Después de enviar la consulta, ábrela en Información WiNET."],
@@ -2784,7 +2813,7 @@ function repasoHtml(){const H=(DBH&&DBH.length?DBH:[...(S.histLocal||[])].revers
   const pens=sel?(sel.penList||[]):[...actsOf(S.tech).flatMap(a=>a.penalidades),...S.day.pen],bons=sel?(sel.bonList||[]):[...actsOf(S.tech).flatMap(a=>a.bonos),...S.day.bon];
   const prev=new Set(H.filter(h=>h!==sel).flatMap(h=>h.penList||[]));const cnt={};pens.forEach(x=>cnt[x]=(cnt[x]||0)+1);const bc={};bons.forEach(x=>bc[x]=(bc[x]||0)+1);
   const cat={};pens.forEach(x=>{const c=penCat(x);cat[c]=(cat[c]||0)+1;});const top3=Object.entries(cat).sort((x,y)=>y[1]-x[1]).slice(0,3);
-  const CONS={"Seguridad":"Antes de cada trabajo: EPP completo, zona señalizada, ATS fiel y nada de celular manejando.","Tiempo":"Cuida la alarma, la hora de ruta y el avance cada 20 min.","Cliente":"Saluda por su nombre, explica antes de hacer y responde siempre con respeto.","Calidad técnica":"Revisa la CTO completa, arma bien los conectores y sigue las reglas de tendido.","Reporte":"Revisa las respuestas del sistema, cuadra materiales y coordina con las torres en orden."};
+  const CONS={"Seguridad":"Antes de cada trabajo: EPP completo, zona señalizada, ATS fiel y nada de celular manejando.","Tiempo":"Cuida la alarma, la hora de ruta y el avance cada "+AVL()+" min.","Cliente":"Saluda por su nombre, explica antes de hacer y responde siempre con respeto.","Calidad técnica":"Revisa la CTO completa, arma bien los conectores y sigue las reglas de tendido.","Reporte":"Revisa las respuestas del sistema, cuadra materiales y coordina con las torres en orden."};
   return `<div class="rep2">${sel?`<p class="sempty">Jornada del ${esc(sel.fecha||"")} · nivel ${sel.nivel} · ${sel.score} pts <button type="button" class="sbtn" data-hsel="-1" style="padding:2px 8px;font-size:12px">Ver hoy</button></p>`:`<p class="sempty">Jornada actual. Toca un día en Historial para ver su repaso.</p>`}
    <h4>✅ Lo que hiciste bien</h4>${Object.keys(bc).length?`<ul class="dl">${Object.entries(bc).map(([x,n])=>`<li>${esc(x)}${n>1?" ×"+n:""}</li>`).join("")}</ul>`:`<p class="sempty">Aún sin bonos.</p>`}
    <h4>❌ Lo que hiciste mal y cómo mejorarlo</h4>${Object.keys(cnt).length?Object.entries(cnt).map(([x,n])=>{const tp=tipFor(x);return `<div class="pi"><div><b>${esc(x)}</b>${n>1?" ×"+n:""}${prev.has(x)?`<span class="rpt">error repetido</span>`:""}</div><div>Por qué está mal: ${esc(tp[1])}</div><div>Cómo hacerlo bien: ${esc(tp[2])}</div></div>`;}).join(""):`<p class="sempty">Sin penalidades. ¡Bien hecho!</p>`}
@@ -3009,10 +3038,10 @@ function sceneBedroom(ph){let h=`<rect width="960" height="540" fill="#2a2f45"/>
 function segPen(a){let n=0;const re=CATS[0][1];if(a)a.penalidades.forEach(t=>{if(re.test(t))n++;});(S.day.pen||[]).forEach(t=>{if(re.test(t))n++;});return n;}
 function ordScore(a){return Math.max(0,100+10*a.bonos.length-15*a.penalidades.length);}
 function faceSvg(sat,sz){const mood=sat>=70?2:sat>=40?1:0,col=["#ff5b5f","#ffb21f","#36d17e"][mood],mouth=["M10 25 Q17 18 24 25","M11 22 H23","M10 20 Q17 27 24 20"][mood];return `<svg width="${sz||32}" height="${sz||32}" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="${col}"/><circle cx="12" cy="14" r="2" fill="#14233a"/><circle cx="22" cy="14" r="2" fill="#14233a"/><path d="${mouth}" stroke="#14233a" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`;}
-function hudHtml(a){const ab=a&&a.estado==="iniciada"&&a.ultimoAvance!=null,mm=ab?S.clock-a.ultimoAvance:0,pr=Math.min(1,mm/20),rc=mm>20?"#ff5b5f":mm>=15?"#ffb21f":"#36d17e",seg=Math.max(0,100-25*segPen(a));
+function hudHtml(a){const ab=a&&a.estado==="iniciada"&&a.ultimoAvance!=null,mm=ab?S.clock-a.ultimoAvance:0,pr=Math.min(1,mm/AVL()),rc=mm>AVL()?"#ff5b5f":mm>=AVL()-5?"#ffb21f":"#36d17e",seg=Math.max(0,100-25*segPen(a));
   return `<div class="fhud"><div class="hc"><b>${hhmm(S.clock)}</b><small>${a?"OT "+a.ordenTrabajo+" · "+esc(a.estado):S.alarm&&S.alarm.phase?"Antes del turno":"Sin órdenes"}</small></div>
   <div class="hs">${a?faceSvg(a.cli.sat,30):faceSvg(70,30)}<div><small>Cliente</small><i class="hbar"><u style="width:${a?a.cli.sat:0}%"></u></i></div></div>
-  <div class="hr" title="Informar avance cada 20 min"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" stroke="rgba(255,255,255,.18)" stroke-width="5" fill="none"/><circle cx="20" cy="20" r="16" stroke="${rc}" stroke-width="5" fill="none" stroke-dasharray="100.5" stroke-dashoffset="${(100.5*(1-pr)).toFixed(1)}" transform="rotate(-90 20 20)"/></svg><div><small>Avance</small><span>${ab?(mm>20?"vencido":(20-mm)+" min"):"—"}</span></div></div>
+  <div class="hr" title="Informar avance cada ${AVL()} min"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" stroke="rgba(255,255,255,.18)" stroke-width="5" fill="none"/><circle cx="20" cy="20" r="16" stroke="${rc}" stroke-width="5" fill="none" stroke-dasharray="100.5" stroke-dashoffset="${(100.5*(1-pr)).toFixed(1)}" transform="rotate(-90 20 20)"/></svg><div><small>Avance</small><span>${ab?(mm>20?"vencido":(20-mm)+" min"):"—"}</span></div></div>
   <div class="hg"><svg width="26" height="30" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 2 L27 7 V16 C27 24 21 30 15 32 C9 30 3 24 3 16 V7 Z" fill="${seg>=75?"#2f7ad8":seg>=50?"#d8962f":"#c0392b"}" stroke="#bcd6f6" stroke-width="2"/></svg><div><small>Seguridad</small><span>${seg}</span></div></div>
   <div class="hp"><small>Puntaje orden</small><b>${a?ordScore(a):"—"}</b></div>
   <button type="button" class="hm" data-snd="1" aria-label="${S.mute?"Activar sonidos":"Silenciar sonidos"}" title="Sonido">${S.mute?"🔇":"🔊"}</button></div>`;}
@@ -3281,7 +3310,7 @@ function tutCalc(){const t=tech(S.tech);
   if(fl.swap&&a.estado==="iniciada"&&topS().s!=="form")return stepGuide(a,"inv","TCE indicó cambio de equipo: abre Inventario, desinstala la ONT con falla e instala otra.");
   {const tp=topS();if(tp.s==="form"&&tp.k==="cambioCaja"&&tp.id===a.id&&!S.os&&a.cajaAck)return a.cajaAck.res?["[data-a=back]","Llegó el callback. Vuelve al detalle y revisa la respuesta en Información WiNET."]:["[data-a=cajaEsperar]","Llegó el ACK: avanza el reloj hasta el callback de WiNET."];}
   {const tp=topS();if(tp.s==="form"&&tp.id&&!S.os){const fa=act(tp.id);if(fa&&!cerrada(fa))return ["[data-a=send]",formHint(fa,tp.k)];}}
-  if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>=15){const g=fsGuide("Informa tu avance");if(g)return g;const tp=topS();if(tp.s==="form"&&tp.k==="ia")return [iaSel(a),formHint(a,"ia")];return menuGuide(a,"avance","Informa tu avance: van "+(S.clock-a.ultimoAvance)+" min (cada 20 min).");}
+  if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>=AVL()-5){const g=fsGuide("Informa tu avance");if(g)return g;const tp=topS();if(tp.s==="form"&&tp.k==="ia")return [iaSel(a),formHint(a,"ia")];return menuGuide(a,"avance","Informa tu avance: van "+(S.clock-a.ultimoAvance)+" min (cada "+AVL()+" min).");}
   if(S.manejando===a.id&&!a.llego){if(a.ev)return ['[data-evo="0"]',"Evento en el camino: léelo y toca Entendido."];if(S.clock<(a.eta??0))return [NONE,"Manejando hacia el cliente: llegas a las "+hhmm(a.eta)+". No uses el celular mientras manejas."];return menuGuide(a,"detener","Llegaste: marca Detener viaje.");}
   if(!a.done.nv)return stepGuide(a,"nv","Notifica tu viaje (foto con el uniforme completo).");
   if(a.estado==="pendiente"&&!a.llego)return menuGuide(a,"enruta","Marca En ruta.");
@@ -3618,7 +3647,7 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-pfo]");if(
   else if(k.startsWith("tp")){S.tipoSel=k.slice(2)==="R"?"":k.slice(2);}
   else if(k.startsWith("hr")){S.turnoSel=k.slice(2)==="R"?"":k.slice(2);}
   else if(/^v\d+$/.test(k)){S.vel=+k.slice(1);S.pausa=false;}
-  else if(k==="go"){const j=(document.getElementById("selJug")||{}).value,c=(document.getElementById("selCas")||{}).value;if(window.GS&&GS.id&&GS.id.nombre)setJugador(GS.id.nombre);else if(j&&j.trim())setJugador(j.trim().toUpperCase());if(c)S.practica=c;S.selOk=1;S.showDash=0;}
+  else if(k==="go"){const j=(document.getElementById("selJug")||{}).value,c=(document.getElementById("selCas")||{}).value;S.gsSeg=0;S.gsDone=0;if(window.GS&&GS.id&&GS.id.nombre)setJugador(GS.id.nombre);else if(j&&j.trim())setJugador(j.trim().toUpperCase());if(c)S.practica=c;S.selOk=1;S.showDash=0;}
   else if(k==="nuevo"){try{localStorage.removeItem(SAVE_K);}catch(e){}S.showDash=0;init(true);return;}
   render();});
 /* Tipo de instalación elegido: las órdenes nuevas respetan horizontal (CTO) o vertical (NAP) */
@@ -3666,7 +3695,7 @@ document.addEventListener("click",e=>{
     if(k==="wifi"){render();const w=document.getElementById("sbwifi");if(w)w.click();return;}render();return;}
   const n=e.target.closest("[data-nl]");if(n){const it=(S.nlog||[])[+n.dataset.nl];S.shade=false;if(!it)return render();S.notif=Object.assign({},it);render();const tmp=document.createElement("button");tmp.dataset.a="openNotif";tmp.hidden=true;document.getElementById("scr").appendChild(tmp);tmp.click();tmp.remove();}});
 /* informe de avance: aviso como notificación del celular a los 15 min */
-{const _t19=tick;tick=function(){_t19.apply(this,arguments);try{S.acts.forEach(a=>{if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>=15&&!a.flags.avNot){a.flags.avNot=1;notifySys("Informe de avance: van "+(S.clock-a.ultimoAvance)+" min. Envía tu avance (OT "+a.ordenTrabajo+")",a.id,"avance");}});}catch(e){}};}
+{const _t19=tick;tick=function(){_t19.apply(this,arguments);try{S.acts.forEach(a=>{if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>=AVL()-5&&!a.flags.avNot){a.flags.avNot=1;notifySys("Informe de avance: van "+(S.clock-a.ultimoAvance)+" min. Envía tu avance (OT "+a.ordenTrabajo+")",a.id,"avance");}});}catch(e){}};}
 /* pegar el avance sugerido en Observación (luego el ET elige la tarea y envía) */
 function iaSel(a){const f=F(a,"ia");if(!(f.obs||"").trim())return "[data-a=usarSug]";return (f.tarea||TAREAS[0])!==avanceSug(a)[0]?"#body select[data-k=ia][data-f=tarea]":"[data-a=send]";}
 
@@ -3856,7 +3885,7 @@ function gsLoginHtml(){return `<div class="selp" role="dialog" aria-modal="true"
   <div class="gslk"><button type="button" data-gs="rank">🏆 Ranking</button><button type="button" data-gs="cred">⭐ Créditos</button></div>
   ${gsIosTip()}<small class="gspr">Solo ingresan especialistas registrados. Tu documento no se muestra en pantalla: solo tu nombre.</small></div></div>`;}
 {const _s=selHtml;selHtml=function(){if(!GS.id)return gsLoginHtml();let h=_s.apply(this,arguments);
-  return h.replace(/<label class="sf">Tu nombre<input[^>]*><\/label>/,`<div class="sf gshi"><span>Hola, <b>${esc(GS.id.nombre)}</b></span><small>Niveles superados: ${GS.lv}/3 <button type="button" data-gs="salir">no soy yo</button></small><div class="gslk"><button type="button" data-gs="rank">🏆 Ranking</button><button type="button" data-gs="cred">⭐ Créditos</button></div></div>`);};}
+  return h.replace(/<label class="sf">Tu nombre<input[^>]*><\/label>/,`<div class="sf gshi"><span>Hola, <b>${esc(GS.id.nombre)}</b></span><small>Niveles superados: ${GS.lv}/5 <button type="button" data-gs="salir">no soy yo</button></small><div class="gslk"><button type="button" data-gs="rank">🏆 Ranking</button><button type="button" data-gs="cred">⭐ Créditos</button></div></div>`);};}
 
 /* cortina del celular */
 {const _sh=shadeHtml;shadeHtml=function(){let h=_sh.apply(this,arguments);
@@ -3865,26 +3894,32 @@ function gsLoginHtml(){return `<div class="selp" role="dialog" aria-modal="true"
 
 /* niveles superados: una orden completada por nivel */
 function gsNivel(){try{if(!GS.id||!S||!S.acts)return;const k="gsfsc-lv-"+GS.id.dni;let d={};try{d=JSON.parse(localStorage.getItem(k)||"{}");}catch(e){}
-  if(S.acts.some(a=>a.estado==="completada")&&S.level&&!d[S.level]){d[S.level]=1;try{localStorage.setItem(k,JSON.stringify(d));}catch(e){}}
+  if(S.acts.some(a=>a.estado==="completada")&&S.level&&!d[S.level]){d[S.level]=1;d.t=d.t||{};d.t[S.level]=Math.max(1,Math.round((Date.now()-(S.gsT0||Date.now()))/1000));try{localStorage.setItem(k,JSON.stringify(d));}catch(e){}}
+  if(d[1]&&d[2]&&d[3]&&d.t&&!d.sent&&!GS.sendingT){const tot=(d.t[1]||0)+(d.t[2]||0)+(d.t[3]||0);GS.sendingT=1;gsApi("/tiempo",{dni:GS.id.dni,segundos:tot}).then(()=>{d.sent=1;try{localStorage.setItem(k,JSON.stringify(d));}catch(e){}}).catch(()=>{}).finally(()=>{GS.sendingT=0;});}
   let n=0;while(d[n+1])n++;n=Math.max(n,GS.lv);
   if(n>GS.lv&&!GS.sending){GS.sending=1;gsApi("/nivel",{dni:GS.id.dni,niveles:n}).then(()=>{GS.lv=n;GS.id.lv=n;gsSave();}).catch(()=>{}).finally(()=>{GS.sending=0;});}}catch(e){}}
 {const _r=render;render=function(){_r.apply(this,arguments);gsNivel();};}
 
 /* superposición a pantalla completa */
-function gsOv(){let el=document.getElementById("gsov");if(!el){el=document.createElement("div");el.id="gsov";document.body.appendChild(el);}return el;}
+function gsOv(){let el=document.getElementById("gsov");const scr=document.getElementById("scr"),inph=!!(S&&S.selOk&&scr&&scr.getClientRects().length);
+  if(el&&((el.parentNode===scr)!==inph)){el.remove();el=null;}
+  if(!el){el=document.createElement("div");el.id="gsov";el.className=inph?"inph":"";(inph?scr:document.body).appendChild(el);}return el;}
 function gsShow(k){GS.ov=k;GS.msg="";gsDraw();}
 function gsClose(){GS.ov=null;const el=document.getElementById("gsov");if(el)el.remove();document.body.classList.remove("gs-open");}
 function gsWrap(t,body){return `<div class="gsw" role="dialog" aria-modal="true"><div class="gsh"><button type="button" class="gsx" data-gs="close" aria-label="Cerrar">‹</button><b>${t}</b></div><div class="gsb">${body}</div></div>`;}
 function gsDraw(){if(!GS.ov)return;document.body.classList.add("gs-open");const el=gsOv();let h="";
   if(GS.ov==="com")h=gsComHtml();else if(GS.ov==="cred")h=gsCredHtml();else if(GS.ov==="rank")h=gsRankHtml();else if(GS.ov==="po")h=gsPoHtml();
-  el.innerHTML=h;}
+  el.innerHTML=h;if(GS.ov==="cred")gsCrawl(el);}
+function gsCrawl(el){const c=el.querySelector(".gscr"),w=el.querySelector(".gscw");if(!c||!w)return;
+  const H=c.clientHeight,h=w.scrollHeight;w.style.setProperty("--ini",H+"px");w.style.setProperty("--fin",-(h+H*.2)+"px");w.style.animationDuration=Math.max(30,Math.round((h+H)/22))+"s";
+  c.onclick=()=>{w.classList.toggle("pau");};}
 function gsOpen(k){if(typeof S==="object"&&S){S.shade=false;}
   if(k==="com"){let p="",o="";try{const t=topS();p=(t&&t.s?t.s:"")+(t&&t.k?"/"+t.k:"");const a=(S.tech?actsOf(S.tech):[]).find(x=>!cerrada(x))||(S.acts||[])[0];o=a?String(a.ordenTrabajo||""):"";}catch(e){}
     GS.ctx={pantalla:p||"inicio",orden:o,nivel:S&&S.level||1};GS.f={tipo:"",desc:"",como:""};GS.sent=0;}
   GS.ov=k;GS.msg="";if(k==="cred"){GS.data.cred=null;GS.data.mis=null;}if(k==="rank")GS.data.rank=null;if(typeof render==="function")try{render();}catch(e){}gsDraw();
   if(k==="cred"){GS.data.cred=null;GS.data.mis=null;gsApi("/creditos").then(r=>{GS.data.cred=gsArr(r);gsDraw();}).catch(e=>{GS.data.cred=[];GS.msg=e.message;gsDraw();});
     if(GS.id)gsApi("/mis",{dni:GS.id.dni}).then(r=>{GS.data.mis=gsArr(r);gsDraw();}).catch(()=>{GS.data.mis=[];gsDraw();});}
-  if(k==="rank"){GS.data.rank=null;gsApi("/ranking").then(r=>{GS.data.rank=gsArr(r);gsDraw();}).catch(e=>{GS.data.rank=[];GS.msg=e.message;gsDraw();});}
+  if(k==="rank"){GS.data.rank=null;gsApi("/ranking").then(r=>{GS.data.rank=r;gsDraw();}).catch(e=>{GS.data.rank={niveles:[],general:[]};GS.msg=e.message;gsDraw();});}
   if(k==="po"&&GS.clave)gsPoLoad();}
 
 function gsComHtml(){const f=GS.f;
@@ -3898,14 +3933,20 @@ function gsComHtml(){const f=GS.f;
 
 const gsEst={Recibida:"gse0",Validada:"gse1",Implementada:"gse2",Descartada:"gse3"};
 function gsCredHtml(){const c=GS.data.cred,m=GS.data.mis;
-  let h=`<p class="gsm">Gracias a quienes ayudaron a que GSFSC se parezca más al trabajo real.</p>`;
-  h+=c===null?`<p class="gsm">Cargando…</p>`:(c.length?`<div class="gsr">${c.map(r=>`<div class="gsrow"><span>⭐</span><div><b>Mejora sugerida por ${esc(r.mostrar_como||r.nombre)}</b><small>${esc(gsTipo(r.tipo))}${r.implementado_en?" · "+esc(String(r.implementado_en).slice(0,10)):""}</small></div></div>`).join("")}</div>`:`<p class="gsm">Aún no hay mejoras implementadas. ¡Sé el primero!</p>`);
-  if(GS.id){h+=`<h3 class="gsh3">Mis hazañas</h3>`+(m===null?`<p class="gsm">Cargando…</p>`:(m.length?`<div class="gsr">${m.map(r=>`<div class="gsrow"><span class="gse ${gsEst[r.estado]||""}">${esc(r.estado)}</span><div><b>${esc(gsTipo(r.tipo))}</b><small>${esc(String(r.descripcion||"").slice(0,90))}${r.nota_po?" · PO: "+esc(r.nota_po):""}</small></div></div>`).join("")}</div>`:`<p class="gsm">Todavía no enviaste hazañas.</p>`));}
-  if(GS.msg)h+=`<p class="gser">${esc(GS.msg)}</p>`;return gsWrap("Créditos",h);}
-function gsRankHtml(){const r=GS.data.rank;let h=`<p class="gsm">Solo entran quienes superaron los 3 niveles. Cuentan las hazañas validadas por el PO (Product Owner).</p>`;
-  if(GS.id)h+=`<p class="gsm">Tus niveles superados: <b>${GS.lv}/3</b></p>`;
-  h+=r===null?`<p class="gsm">Cargando…</p>`:(r.length?`<div class="gsr">${r.map((x,i)=>`<div class="gsrow ${GS.id&&x.nombre===GS.id.nombre?"me":""}"><span class="gsn">${i+1}</span><div><b>${esc(x.nombre)}</b><small>${x.hazanas} hazaña${+x.hazanas===1?"":"s"}</small></div></div>`).join("")}</div>`:`<p class="gsm">Aún no hay posiciones.</p>`);
-  if(GS.msg)h+=`<p class="gser">${esc(GS.msg)}</p>`;return gsWrap("Ranking de hazañas",h);}
+  const lst=c===null?`<p class="gscl">Cargando…</p>`:(c.length?c.map(r=>`<div class="gscn"><b>${esc(String(r.mostrar_como||r.nombre).toUpperCase())}</b><small>${esc(gsTipo(r.tipo))}</small></div>`).join(""):`<p class="gscl">Aún no hay mejoras implementadas.<br>¡Sé el primero!</p>`);
+  const mis=GS.id&&m&&m.length?`<div class="gscm"><b>Mis hazañas</b>${m.map(r=>`<div><span class="gse ${gsEst[r.estado]||""}">${esc(r.estado)}</span> ${esc(gsTipo(r.tipo))}</div>`).join("")}</div>`:"";
+  return `<div class="gsw gsstar" role="dialog" aria-modal="true"><button type="button" class="gsx gsxs" data-gs="close" aria-label="Cerrar">‹</button><div class="gscr"><div class="gscw"><div class="gscep">GSFSC · CRÉDITOS</div><h2>Quienes miraron el campo con otros ojos</h2><p class="gscl">En una galaxia de órdenes, rutas y cajas NAP, estas personas dieron una visión distinta y apoyaron el desarrollo del simulador.</p><div class="gscs">MEJORAS SUGERIDAS POR</div>${lst}<p class="gscl gscf">Gracias a todos.<br>Que la fibra los acompañe.</p><div class="gscfin">GSFSC</div></div></div><div class="gstap">toca para pausar</div></div>`;}
+const gsFmt=sg=>{sg=Math.max(0,Math.round(+sg||0));const h=Math.floor(sg/3600),m=Math.floor(sg%3600/60),x=sg%60;return h?`${h} h ${String(m).padStart(2,"0")} min`:`${m} min ${String(x).padStart(2,"0")} s`;};
+const gsCopa=(c)=>`<svg viewBox="0 0 64 64" width="54" height="54" aria-hidden="true"><path d="M18 8h28v14c0 10-6 17-14 17S18 32 18 22z" fill="${c}"/><path d="M18 12H8c0 10 4 16 12 18M46 12h10c0 10-4 16-12 18" fill="none" stroke="${c}" stroke-width="4"/><rect x="28" y="39" width="8" height="9" fill="${c}"/><rect x="20" y="48" width="24" height="8" rx="2" fill="${c}"/><path d="M24 12v10c0 6 3 10 6 11" stroke="#fff" stroke-opacity=".55" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`;
+function gsRankHtml(){const r=GS.data.rank;const me=GS.id&&r?r.findIndex(x=>x.nombre===GS.id.nombre):-1;
+  let h=`<p class="gsm">Ranking por el <b>tiempo real</b> que tardó cada especialista en superar los 3 niveles.</p>`;
+  if(r===null)h+=`<p class="gsm">Cargando…</p>`;
+  else if(!r.length)h+=`<div class="gspod empty">${[["#C9D1DA",2],["#FFC83D",1],["#CD7F32",3]].map(([c,n])=>`<div class="gsp p${n}">${gsCopa(c)}<b>—</b><small>libre</small><i>${n}</i></div>`).join("")}</div><p class="gsm">Aún nadie superó los 3 niveles. ¡Sé el primero!</p>`;
+  else{const t=r.slice(0,3),cols=[[t[1],"#C9D1DA",2],[t[0],"#FFC83D",1],[t[2],"#CD7F32",3]];
+    h+=`<div class="gspod">${cols.map(([x,c,n])=>`<div class="gsp p${n}">${gsCopa(c)}<b>${x?esc(x.nombre):"—"}</b><small>${x?gsFmt(x.segundos):"libre"}</small><i>${n}</i></div>`).join("")}</div>`;
+    if(r.length>3)h+=`<div class="gsr">${r.slice(3).map((x,i)=>`<div class="gsrow ${i+3===me?"me":""}"><span class="gsn">${i+4}</span><div><b>${esc(x.nombre)}</b><small>${gsFmt(x.segundos)}</small></div></div>`).join("")}</div>`;
+    h+=me>=0?`<p class="gsm gsyo">Tu puesto: <b>${me+1}</b> · ${gsFmt(r[me].segundos)}</p>`:(GS.id?`<p class="gsm gsyo">Tus niveles superados: <b>${GS.lv}/3</b></p>`:"");}
+  if(GS.msg)h+=`<p class="gser">${esc(GS.msg)}</p>`;return gsWrap("Ranking de tiempos",h);}
 
 /* panel PO */
 function gsPoLoad(){gsApi("/po",{clave:GS.clave,accion:"hallazgos"}).then(r=>{GS.data.hz=gsArr(r);gsDraw();}).catch(e=>{GS.msg=e.message;gsDraw();});
@@ -3935,7 +3976,7 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-gs]");if(!
   if(k==="com"||k==="cred"||k==="rank"||k==="po"){gsOpen(k);return;}
   if(k==="salir"){GS.id=null;GS.lv=0;try{localStorage.removeItem("gsfsc-id");}catch(err){}render();return;}
   if(k==="login"){const d=((document.getElementById("gsDni")||{}).value||"").trim(),m=document.getElementById("gsLm");
-    if(/^\d{4}$/.test(d)){if(m)m.textContent="Verificando…";gsApi("/po",{clave:d,accion:"login"}).then(()=>{GS.clave=d;GS.tab="h";gsOpen("po");}).catch(()=>{const m2=document.getElementById("gsLm");if(m2)m2.textContent="Documento no autorizado.";});return;}
+    if(/^\d{4}$/.test(d)){if(m)m.textContent="Verificando…";gsApi("/po",{clave:d,accion:"login"}).then(()=>{GS.clave=d;GS.tab="p";gsOpen("po");}).catch(()=>{const m2=document.getElementById("gsLm");if(m2)m2.textContent="Documento no autorizado.";});return;}
     if(!/^\d{8}$/.test(d)){if(m)m.textContent="Escribe tu documento de 8 dígitos.";return;}
     if(m)m.textContent="Verificando…";
     gsApi("/login",{dni:d}).then(r=>{GS.id={dni:d,nombre:gsNombre(r.nombre),lv:+r.niveles_completados||0};GS.lv=GS.id.lv;gsSave();try{setJugador(GS.id.nombre);}catch(err){}render();})
@@ -3969,6 +4010,88 @@ try{render();}catch(e){}
         if(!S.faltaVisto){if(S.os==="home")return ["[data-os=mochila]","Revisa tu mochila: algo no está completo."];if(S.os==="mochila")return null;return homeGuide("Revisa tu mochila: algo no está completo");}
         const r=logGuide("mat",txt);if(r)return r;}}}catch(e){}
   return r0;};}
+
+/* ============ v38 · tiempos por nivel, intentos, ranking por niveles, panel PO ampliado ============ */
+var GSCFG={avance_min:20,limite_pen:3};
+function AVL(){return (window.GSCFG&&GSCFG.avance_min)||20;}
+function gsCfg(){gsApi("/config").then(c=>{if(c&&c.avance_min)GSCFG.avance_min=+c.avance_min;if(c&&c.limite_pen!=null)GSCFG.limite_pen=+c.limite_pen;}).catch(()=>{});}
+gsCfg();
+/* tiempo activo: solo cuenta con la app visible y con actividad en los últimos 2,5 min */
+GS.lastIn=Date.now();
+["pointerdown","keydown","touchstart","wheel"].forEach(ev=>document.addEventListener(ev,()=>{GS.lastIn=Date.now();},true));
+setInterval(()=>{try{if(S&&S.selOk&&!S.showDash&&!document.hidden&&Date.now()-GS.lastIn<150000&&!GS.ov)S.gsSeg=(S.gsSeg||0)+1;}catch(e){}},1000);
+/* categorías de penalidad */
+const GS_CATS=[[/seguridad|EPP|altura|cables eléctricos|escalera|celular manejando|Incidente|Robo de herramienta|charla|cercar|ATS/i,"Seguridad y EPP"],
+ [/No realizado|suspensi|Suspender/i,"Motivo de No realizado / suspensión"],[/TCE/,"Escalamiento a TCE"],[/TCP/,"Coordinación con TCP"],
+ [/avance|alarma|ruta tarde|fuera de la ventana|tarde por el tráfico|TCM|Pospuso|dos órdenes agendadas/i,"Tiempos y avance"],
+ [/wifi|router|bandas|repetidor/i,"WiFi y router"],[/acta|Finalizar|Finalizó|Certificación|Cierre|DNI/i,"Acta y cierre"],
+ [/cliente|Lenguaje|Prometió|propina|Explicó|orient|nombre equivocado|domicilio|permiso|Perforó|malestar/i,"Trato al cliente"],
+ [/tendido|drop|fibra|ducto|guía|poste|Postes|Tendió/i,"Tendido y obra"],[/ONT|serie|inventario|Activar|Activación|Materiales/i,"Inventario y activación"],
+ [/WiNET|vecino|puerto|Cambio Caja|Asignación|CTO|NAP|caja|potencia|Conectó/i,"Red: NAP, CTO y WiNET"]];
+function gsCat(t){for(const [re,c] of GS_CATS)if(re.test(t))return c;return "Otros";}
+/* registro de intentos (una orden cerrada por partida) */
+function gsPend(){try{return JSON.parse(localStorage.getItem("gsfsc-pend")||"[]");}catch(e){return [];}}
+function gsPendSet(a){try{localStorage.setItem("gsfsc-pend",JSON.stringify(a.slice(-20)));}catch(e){}}
+function gsFlush(){if(GS.flushing||!GS.id)return;const q=gsPend();if(!q.length)return;GS.flushing=1;
+  const one=()=>{const it=gsPend()[0];if(!it){GS.flushing=0;return;}
+    gsApi("/intento",it).then(r=>{gsPendSet(gsPend().slice(1));if(r&&r.valido&&it.dni===GS.id.dni){GS.lv=Math.max(GS.lv,it.nivel);GS.id.lv=GS.lv;gsSave();}
+      try{toast(r&&r.valido?"Tu tiempo cuenta para el ranking: "+gsFmt(it.segundos):"Tu tiempo no cuenta: más de "+(r&&r.limite)+" penalidades.");}catch(e){}one();})
+     .catch(er=>{if(/autorizado|inválido/i.test(er.message))gsPendSet(gsPend().slice(1));GS.flushing=0;});};
+  one();}
+function gsNivel(){try{if(!GS.id||!S||!S.acts)return;
+  if(!S.gsDone&&S.selOk){const a=S.acts.find(x=>x.estado==="completada");
+    if(a){S.gsDone=1;const pens=(a.penalidades||[]).concat((S.day&&S.day.pen)||[]).map(t=>({cat:gsCat(t),txt:String(t).slice(0,200)}));
+      const q=gsPend();q.push({dni:GS.id.dni,nivel:S.level||1,casuistica:String(S.practica||a.casuistica||"normal"),segundos:Math.max(30,Math.round(S.gsSeg||0)),puntaje:a.cli&&a.cli.sat!=null?Math.round(a.cli.sat):null,ayudas:(S.day&&S.day.ayudas)||0,penalidades:pens});gsPendSet(q);}}
+  gsFlush();}catch(e){}}
+/* ranking: podio general y un podio por nivel */
+const gsCopaN=(c,s)=>gsCopa(c).replace('width="54" height="54"','width="'+s+'" height="'+s+'"');
+function gsPodio(lst,small,sub){const t=lst.slice(0,3),cols=[[t[1],"#C9D1DA",2],[t[0],"#FFC83D",1],[t[2],"#CD7F32",3]];
+  return `<div class="gspod ${small?"sm":""}">${cols.map(([x,c,n])=>`<div class="gsp p${n}">${gsCopaN(c,small?38:54)}<b>${x?esc(x.nombre):"—"}</b><small>${x?(sub?sub(x):gsFmt(x.segundos)):"libre"}</small><i>${n}</i></div>`).join("")}</div>`;}
+function gsRankHtml(){const r=GS.data.rank;let h=`<p class="gsm">Ranking por <b>tiempo real</b> de juego. Cuenta solo si la orden cerró con pocas penalidades.</p>`;
+  if(GS.id)h+=`<p class="gsm">Tus niveles superados: <b>${GS.lv}/5</b></p>`;
+  if(r===null)h+=`<p class="gsm">Cargando…</p>`;
+  else if(!r.niveles){h+=`<p class="gsm">Ranking no disponible.</p>`;}
+  else{h+=`<h3 class="gsh3">🏆 General</h3>`+gsPodio(r.general||[],false,x=>x.niveles+" niv · "+gsFmt(x.segundos));
+    if((r.general||[]).length>3)h+=`<div class="gsr">${r.general.slice(3,10).map((x,i)=>`<div class="gsrow ${GS.id&&x.nombre===GS.id.nombre?"me":""}"><span class="gsn">${i+4}</span><div><b>${esc(x.nombre)}</b><small>${x.niveles} niveles · ${gsFmt(x.segundos)}</small></div></div>`).join("")}</div>`;
+    r.niveles.forEach(n=>{h+=`<h3 class="gsh3">Nivel ${n.nivel} · ${esc(NIV[n.nivel-1]||"")}</h3>`+gsPodio(n.top||[],true);});}
+  if(GS.msg)h+=`<p class="gser">${esc(GS.msg)}</p>`;return gsWrap("Ranking de tiempos",h);}
+/* panel PO ampliado */
+function gsPoLoad(){const c=GS.clave,L=(a,k,f)=>gsApi("/po",{clave:c,accion:a}).then(r=>{GS.data[k]=f?f(r):gsArr(r);gsDraw();}).catch(e=>{GS.msg=e.message;gsDraw();});
+  L("hallazgos","hz");L("jugadores","jg");L("dashboard","dash");L("problemas","prob");L("correctivos","corr");L("config_get","cfg",r=>r);}
+const gsDias=(a,b)=>{if(!a||!b)return 0;return Math.max(0,Math.round((new Date(String(b).replace(" ","T"))-new Date(String(a).replace(" ","T")))/86400000));};
+const gsCorrEst={Pendiente:"gse0",Aplicado:"gse1",Verificado:"gse2"};
+function gsPoHtml(){
+  if(!GS.clave)return gsWrap("Panel PO (Product Owner)",`<label class="gsl">Clave de 4 dígitos<input id="gsClave" type="password" inputmode="numeric" maxlength="4" autocomplete="off"></label><p id="gsEr" class="gser">${esc(GS.msg)}</p><button type="button" class="gsgo" data-gs="poin">Entrar</button>`);
+  const hz=GS.data.hz||[],jg=GS.data.jg||[],da=GS.data.dash||[],pr=GS.data.prob||[],co=GS.data.corr||[],cnt=e=>hz.filter(x=>x.estado===e).length;
+  if(!GS.tab||"rh".includes(GS.tab)&&GS.tab==="r")GS.tab="p";
+  const T=[["p","Progreso"],["q","Problemas"],["c","Correctivos"],["h","Hazañas"],["j","Jugadores"],["a","Ajustes"]];
+  let h=`<div class="gstabs">${T.map(([k,l])=>`<button type="button" data-gs="potab" data-v="${k}" class="${GS.tab===k?"on":""}">${l}</button>`).join("")}</div>`;
+  if(GS.msg)h+=`<p class="gser">${esc(GS.msg)}</p>`;
+  if(GS.tab==="p"){h+=da.length?da.map(x=>`<div class="gsca"><div class="gscah"><b>${esc(x.nombre)}</b><span class="gse ${x.niveles>=5?"gse2":"gse1"}">${x.niveles}/5 niveles</span></div>
+      <small>${x.intentos} intentos · ${x.ayudas} ayudas · ${x.pen_prom||0} penalidades por orden${x.primero?" · "+gsDias(x.primero,x.ultimo)+" días de aprendizaje":""}</small>
+      <div class="gsmej">${[1,2,3,4,5].map(n=>`<span class="${x.mejores&&x.mejores[n]?"ok":""}"><i>${n}</i>${x.mejores&&x.mejores[n]?gsFmt(x.mejores[n]):"—"}</span>`).join("")}</div>
+      <small>Hazañas: ${(x.hazanas&&Object.entries(x.hazanas).map(([k,v])=>v+" "+k.toLowerCase()).join(" · "))||"ninguna"}</small></div>`).join(""):`<p class="gsm">Aún no hay jugadores.</p>`;}
+  else if(GS.tab==="q"){const g={};pr.forEach(x=>{(g[x.nombre||x.dni]=g[x.nombre||x.dni]||[]).push(x);});const k=Object.keys(g);
+    h+=k.length?k.map(n=>`<div class="gsca"><b>${esc(n)}</b>${g[n].map(x=>`<div class="gsbar"><span>${esc(x.categoria)}</span><i>${x.veces}×</i></div>`).join("")}</div>`).join(""):`<p class="gsm">Aún no hay penalidades registradas.</p>`;}
+  else if(GS.tab==="c"){h+=`<p class="gsm">Correctivo: <b>practicar de nuevo</b> la casuística donde se repitió el error.</p>`;
+    h+=co.length?co.map(x=>`<div class="gsca"><div class="gscah"><span class="gse ${gsCorrEst[x.estado]||""}">${esc(x.estado)}</span><b>${esc(x.nombre||x.dni)}</b></div><small>${esc(x.categoria)} · ${x.veces}×</small><p>Practicar más: <b>${esc((typeof CAS==="object"&&CAS[x.casuistica])||x.casuistica||"")}</b></p><input data-gsc="${x.id}" maxlength="200" placeholder="Nota (opcional)" value="${esc(x.nota||"")}"><div class="gsac">${["Pendiente","Aplicado","Verificado"].map(e=>`<button type="button" data-gs="pocorr" data-id="${x.id}" data-v="${e}">${e}</button>`).join("")}</div></div>`).join(""):`<p class="gsm">Sin correctivos por ahora.</p>`;}
+  else if(GS.tab==="h"){h+=`<div class="gsflt">${["","Recibida","Validada","Implementada","Descartada"].map(e=>`<button type="button" data-gs="poflt" data-v="${e}" class="${GS.flt===e?"on":""}">${e||"Todas"}${e?" "+cnt(e):" "+hz.length}</button>`).join("")}</div>`;
+    const L=hz.filter(x=>!GS.flt||x.estado===GS.flt);
+    h+=L.length?L.map(x=>`<div class="gsca"><div class="gscah"><span class="gse ${gsEst[x.estado]||""}">${esc(x.estado)}</span><b>${esc(x.nombre||x.dni)}</b></div><small>${esc(gsTipo(x.tipo))} · ${esc(x.pantalla||"")}${x.orden?" · OT "+esc(x.orden):""}</small><p>${esc(x.descripcion)}</p>${x.mostrar_como?`<small>Créditos como: ${esc(x.mostrar_como)}</small>`:""}<input data-gsn="${x.id}" maxlength="200" placeholder="Nota del PO (opcional)" value="${esc(x.nota_po||"")}"><div class="gsac"><button type="button" data-gs="poest" data-id="${x.id}" data-v="Validada">Validar</button><button type="button" data-gs="poest" data-id="${x.id}" data-v="Implementada">Implementada</button><button type="button" data-gs="poest" data-id="${x.id}" data-v="Descartada">Descartar</button></div></div>`).join(""):`<p class="gsm">Sin hazañas en este filtro.</p>`;}
+  else if(GS.tab==="a"){const c=GS.data.cfg||{avance_min:20,limite_pen:3},a=GS.cfgA??c.avance_min,l=GS.cfgL??c.limite_pen;
+    h+=`<div class="gsca"><b>Informe de avance cada <span id="gsAv">${a}</span> min</b><small>Aviso en el celular 5 min antes. Vale para todos desde su próxima partida.</small><input type="range" min="10" max="40" step="1" value="${a}" data-gsl="a"></div>
+    <div class="gsca"><b>Límite de penalidades para el ranking: <span id="gsLm2">${l}</span></b><small>Si la orden cierra con más penalidades que este límite, el tiempo no cuenta.</small><input type="range" min="0" max="20" step="1" value="${l}" data-gsl="l"></div>
+    <button type="button" class="gsgo" data-gs="poajus">Guardar ajustes</button>`;}
+  else{h+=`<h3 class="gsh3">Agregar un jugador</h3><div class="gsad"><input id="gsAd" inputmode="numeric" maxlength="8" placeholder="DNI"><input id="gsAn" maxlength="30" placeholder="Nombre"><button type="button" data-gs="poadd">Agregar</button></div>
+    <h3 class="gsh3">Agregar varios</h3><textarea id="gsLote" rows="5" placeholder="Un jugador por línea: DNI y nombre&#10;12345678 Juan Pérez&#10;87654321 María Ríos"></textarea><button type="button" class="gsgo" data-gs="polote">Cargar lista</button>
+    <h3 class="gsh3">Jugadores (${jg.length})</h3><div class="gsr">${jg.map(x=>`<div class="gsrow"><div><b>${esc(x.nombre)}</b><small>DNI ${esc(String(x.dni).slice(0,2))}••••${esc(String(x.dni).slice(-2))} · niveles ${x.niveles_completados||0}/5${x.activo===false?" · inactivo":""}</small></div><button type="button" class="gsmini" data-gs="poact" data-dni="${esc(x.dni)}" data-n="${esc(x.nombre)}" data-v="${x.activo===false?1:0}">${x.activo===false?"Activar":"Desactivar"}</button></div>`).join("")}</div>`;}
+  return gsWrap("Panel PO (Product Owner)",h);}
+document.addEventListener("input",e=>{const t=e.target.closest&&e.target.closest("[data-gsl]");if(!t)return;if(t.dataset.gsl==="a"){GS.cfgA=+t.value;const s=document.getElementById("gsAv");if(s)s.textContent=t.value;}else{GS.cfgL=+t.value;const s=document.getElementById("gsLm2");if(s)s.textContent=t.value;}},true);
+document.addEventListener("click",e=>{const t=e.target.closest("[data-gs]");if(!t)return;const k=t.dataset.gs,v=t.dataset.v;
+  if(k==="pocorr"){const n=document.querySelector('[data-gsc="'+t.dataset.id+'"]');gsPoCall({accion:"correctivo",id:+t.dataset.id,estado:v,nota:n?n.value:""});}
+  else if(k==="poajus"){const c=GS.data.cfg||{};gsPoCall({accion:"config",avance_min:GS.cfgA??c.avance_min??20,limite_pen:GS.cfgL??c.limite_pen??3},r=>{if(r.avance_min)GSCFG.avance_min=r.avance_min;if(r.limite_pen!=null)GSCFG.limite_pen=r.limite_pen;GS.cfgA=GS.cfgL=undefined;GS.msg="Ajustes guardados.";});}
+},true);
+try{gsFlush();}catch(e){}
 
 try{if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});}catch(e){}
 </script>
