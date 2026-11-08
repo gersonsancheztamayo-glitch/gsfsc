@@ -897,6 +897,7 @@ body.pfo-run:not(.cli-hide):not(.ph-open) #clibtn,body.pfo-run:not(.cli-hide):no
 .gstabs{overflow-x:auto;flex-wrap:nowrap;white-space:nowrap;padding-bottom:4px}
 .gsca small{display:block;margin-top:2px}.gscah small{display:inline}
 .gsq1{margin:0 12px 10px}.gsq1 button{width:100%;background:#ffffff14;border:1px solid #ffffff33;border-radius:12px;color:#fff;padding:10px;font:inherit;font-size:14px;cursor:pointer}.gsh{font-size:11px;color:#8a5a00}
+html,body{overscroll-behavior:none}
 </style>
 
 <div class="shell" data-tab="cel">
@@ -4124,6 +4125,15 @@ try{S.cliHide=true;render();}catch(e){}
   try{if(r&&typeof r[0]==="string"&&r[0]!==NONE&&!document.body.classList.contains("ph-open")){const b=document.getElementById("phbtn");
       if(b&&!b.hidden&&b.getClientRects().length){const el=document.querySelector(r[0]);if(el&&el.closest("#scr")&&!el.getClientRects().length)return ["#phbtn","Abre el celular (botón 📱). "+r[1]];}}}catch(e){}
   return r;};}
+
+/* ============ v40 · pantalla completa en el celular ============ */
+function gsStandalone(){try{return !!(navigator.standalone||matchMedia("(display-mode:standalone)").matches||matchMedia("(display-mode:fullscreen)").matches);}catch(e){return false;}}
+function gsFull(){try{if(gsStandalone()||document.fullscreenElement)return;const de=document.documentElement;
+  if(!(matchMedia("(pointer:coarse)").matches))return;const f=de.requestFullscreen||de.webkitRequestFullscreen;if(f){const p=f.call(de,{navigationUI:"hide"});if(p&&p.catch)p.catch(()=>{});}}catch(e){}}
+let _gsFullOnce=0;
+document.addEventListener("pointerup",()=>{if(_gsFullOnce)return;_gsFullOnce=1;gsFull();},true);
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("[data-pfo=go]"))gsFull();},true);
+document.addEventListener("fullscreenchange",()=>{try{render();}catch(e){}});
 
 try{if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});}catch(e){}
 </script>
