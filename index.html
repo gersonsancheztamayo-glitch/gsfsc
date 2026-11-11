@@ -218,6 +218,15 @@ button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-vis
 .chat .in{background:#fff;border-top:1px solid #ddd;padding:12px 14px;color:#888;display:flex;justify-content:space-between}
 
 /* Hoja inferior y espera */
+
+.scanov{position:absolute;inset:0;z-index:60;background:#000;overflow:hidden}
+.scanrot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(90deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:13px}
+.scanrot .sct{font-weight:600}
+.scv{position:relative;width:70%;height:38%;border:2px solid #7bd3ff;border-radius:8px;background:#222;overflow:hidden}
+.scv svg{width:100%;height:100%;opacity:.85}
+.scl{position:absolute;left:0;right:0;height:2px;background:#ff3d00;top:0;animation:scl 1s linear infinite alternate}
+@keyframes scl{to{top:calc(100% - 2px)}}
+.scn{font-family:var(--mono);font-size:14px;letter-spacing:1px}
 .ov{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:30;display:flex;align-items:flex-end}
 .sheet{background:var(--card);width:100%;border-radius:14px 14px 0 0;padding:18px;max-height:86%;overflow:auto;display:grid;gap:10px}
 .sheet h3{margin:0;font-size:18px}
@@ -1080,7 +1089,7 @@ function phoneBack(){if(S.alarm&&S.alarm.phase)return;if(S.sheet){closeSheet();r
   if(S.os){if(S.os==="wsp"&&S.wspc)S.wspc=null;else if(S.os!=="home")S.os="home";render();return;}
   if(S.logged){if(S.menu||S.drawer){S.menu=false;S.drawer=false;render();return;}pop();}}
 function pop(){if(S.stack.length>1)S.stack.pop();S.menu=false;render();}
-function tick(){tcmCheck();charlaCheck();S.acts.forEach(a=>{if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>AVL()&&!a.avanceVencido&&!(S._bigAdvAt!=null&&S.clock-S._bigAdvAt<5)){a.avanceVencido=true;pen(a,"Informe de avance fuera de los 20 min ("+hhmm(S.clock)+")");}});}
+function tick(){tcmCheck();charlaCheck();S.acts.forEach(a=>{if(a.estado==="iniciada"&&a.ultimoAvance!=null&&S.clock-a.ultimoAvance>AVL()&&!a.avanceVencido&&!(S._bigAdvAt!=null&&S.clock-S._bigAdvAt<5)){a.avanceVencido=true;pen(a,"Informe de avance fuera de los "+AVL()+" min ("+hhmm(S.clock)+")");}});}
 function adv(m){if(S&&S.day&&S.day.sinDesayuno&&S.clock>=780&&m>2)m=Math.round(m*1.2);S.clock+=m;if(m>=5)S._bigAdvAt=S.clock;tick();if(runTQ())S._dirty=1;}
 function supSay(txt){S.supChat.push({t:hhmm(S.clock),txt});if(!(S.os==="wsp"&&S.wspc==="sup"))S.supUnread=(S.supUnread||0)+1;notify("Supervisor ET",txt,"sup");}
 function tcmAviso(a,txt,ask){const L=chatList(a,"tcm");if(!L.some(x=>x.sys))L.push({sys:true,t:hhmm(S.clock)});L.push({t:hhmm(S.clock),txt:"Aviso TCM · OT "+a.ordenTrabajo+": "+txt});hist(a,"TCM: "+txt,"bad");
@@ -1102,11 +1111,11 @@ function flowKeys(a){
   if(!a.inicio)return ["nv"];
   const d=a.done,k=["nv","winet1","ft2","ia"];
   if(d.ft2)k.push("ca");
-  k.push("postes","inv","valinv");
+  const pm=d.winet1||d.postes||d.mat||a.flags.pmVis;if(pm)a.flags.pmVis=1;if(pm)k.push("postes");k.push("inv","valinv");
   if(d.valinv||(a.chk&&a.chk.valinv))k.push("activar");
   if(a.schaman==="SOK"||(a.chk&&a.chk.activar))k.push("cert");
   if(d.cert)k.push("winet2");
-  k.push("mat","winetfin");
+  if(pm)k.push("mat");k.push("winetfin");
   if(d.winet2)k.push("acta");
   return k;
 }
@@ -1584,7 +1593,7 @@ const DIFUSIONES=[
 ];
 /* ============ Formularios ============ */
 const caFO=[
- ["fo1","FO1 - Foto de zona de trabajo cercada","Foto debe mostrar el poste principal, buzón o montante a utilizar y la zona de trabajo correctamente cercada, zona externa con los 4 conos y 4 barras retráctiles, zona interna de acuerdo a evaluación.","Foto de zona de trabajo cercada ( Poste/ montante/ Buzón)",a=>a.done.ft2?null:"Disponible después de Fuerza terreno 2."],
+ ["fo1","FO1 - Foto de zona de trabajo cercada","Foto debe mostrar el poste principal, buzón o montante a utilizar y la zona de trabajo correctamente cercada, zona externa con los 6 conos y 6 barras retráctiles, zona interna de acuerdo a evaluación.","Foto de zona de trabajo cercada ( Poste/ montante/ Buzón)",a=>a.done.ft2?null:"Disponible después de Fuerza terreno 2."],
  ["fo2","FO2 - Foto de potencia en NAP","Foto debe evidenciar el puerto medido con el power meter (1490nm), evidenciando la potencia dentro de los parámetros establecidos (-13.00 a -23.00 dBm) y se debe apreciar el rotulado de la caja NAP.","Foto de potencia en NAP",a=>a.done.winet1?null:"Disponible después de la consulta WiNET."],
  ["fo3","FO3 - Foto de puerto utilizado","Foto debe evidenciar el puerto que se está utilizando con el cable drop final conectado y debe mostrar el correcto etiquetado en el acrílico con todos los campos completos (banderín azul).","Foto de puerto a utilizar y etiqueta",a=>a.done.winet1?null:"Disponible después de la consulta WiNET."],
  ["fo4","FO4 - Foto de potencia en Patch Cord cliente","Foto debe mostrar medición en la roseta con el power meter (1490nm), evidenciando la potencia dentro de los parámetros establecidos (>= -24.00 dBm) y la roseta asegurada con tarugo.","Foto de potencia en patch cord cliente",a=>a.done.valinv?null:"Disponible cuando la roseta y la ONT estén instaladas (Validar Inventario)."],
@@ -1616,7 +1625,7 @@ ft2(a){const f=F(a,"ft2");return {hd:hdForm("Fuerza terreno 2"),body:`<div class
   <div class="lab" style="font-weight:400;font-size:16px">PTAR (Plan de trabajo de Alto Riesgo)</div>${fPhoto(a,"ft2","ptar","Foto PTAR")}
   <div class="lab" style="font-weight:400;font-size:16px">ATS (Análisis de trabajo seguro)</div>${fPhoto(a,"ft2","ats","Foto ATS")}
   <h2>Riesgos identificados en el ATS</h2>${LV()===1?`<div class="pend">Pista (aprendiz): la escena muestra ${esc((a.riesgos||[]).join(", ")||"ningún riesgo especial")}.</div>`:""}${RIESGOS.map(r=>fChk("ft2","r_"+r.replace(/ /g,"_"),r[0].toUpperCase()+r.slice(1),f["r_"+r.replace(/ /g,"_")])).join("")}
-  <div class="pend">Simulador: confirma lo que hiciste en campo.</div>${fChk("ft2","conos","Zona cercada con 4 conos y 4 barras retráctiles",f.conos)}${a.red.tipo==="NAP"?`<div class="pend">Instalación vertical (edificio): no se usa escalera, arnés, mameluco ni casco; se señaliza con 1 cono.</div>`:fChk("ft2","epp","Escalera con 3 sogas, arnés, mameluco y freno de vida",f.epp)}${btr()}</div>`};},
+  <div class="pend">Simulador: confirma lo que hiciste en campo.</div>${fChk("ft2","conos","Zona cercada con 6 conos y 6 barras retráctiles",f.conos)}${a.red.tipo==="NAP"?`<div class="pend">Instalación vertical (edificio): no se usa escalera, arnés, mameluco ni casco; se señaliza con 1 cono.</div>`:fChk("ft2","epp","Escalera con 3 sogas, arnés, mameluco y freno de vida",f.epp)}${btr()}</div>`};},
 ia(a){const f=F(a,"ia");return {hd:hdForm("Informar Avance"),body:`<div class="frm">${ro("Tipo de solicitud","Informar Avance").replace('class="ro"','class="ro" style="padding:6px 0"')}<div class="warnline">Informar Avance</div>
   ${fSel("ia","tarea","Tarea en ejecución:",TAREAS,f.tarea||TAREAS[0])}${fArea("ia","obs","Observación",f.obs)}${(()=>{const [t,o]=avanceSug(a);return `<div class="sugav"><div class="l">Así debería ir tu avance (toca para pegarlo)</div><div class="o">«${esc(o)}»</div><button type="button" data-a="usarSug">Pegar en Observación</button></div>`;})()}${btr()}</div>`};},
 ca(a){const f=F(a,"ca");const c=a.ca;
@@ -1728,7 +1737,7 @@ function actaScreen(a){
     return `<div class="asec ${op?"op":""}"><button type="button" class="sh" data-acs="${i}"><span class="ico">${s.i}</span><span class="tt"><small>SECCIÓN ${String(i+1).padStart(2,"0")}</small><b>${s.t}</b></span>${s.firma&&ok<tot?`<span class="ff">● Falta firmar</span>`:""}<span class="bd ${bd}">${ok}/${tot}</span><span>${op?"⌃":"⌄"}</span></button>
     ${op?`<div class="sb2">${hint[i]||""}${(s.f||[]).map(x=>actaField(a,f,x)).join("")}${(s.g||[]).map(g=>`<div class="subgrp"><b>${esc(g[0])}</b><div class="${g.length===3&&g[1][2]==="num"?"two":""}">${g.slice(1).map(x=>actaField(a,f,x)).join("")}</div></div>`).join("")}${(s.f2||[]).map(x=>actaField(a,f,x)).join("")}</div>`:""}</div>`;}).join("");
   return {hd:hdForm("Acta de conformidad",""),body:`<div class="acta"><div class="ahd"><span>Llenar datos</span><small>${c.d}/${c.t} · ${pct}%</small><button type="button" style="background:none;border:0;font-size:18px" data-a="back" aria-label="Cerrar">✕</button></div><div class="pbar"><i style="width:${pct}%"></i></div><div class="secs">${secs}</div>
-    <div class="aftbtn"><button type="button" data-a="back">Cancelar</button><button type="button" class="ap" data-a="send">✓ Aplicar al acta</button></div></div>`};
+    <div class="aftbtn"><button type="button" data-a="back">Cancelar</button><button type="button" class="ap" data-a="send">Guardar Acta</button></div></div>`};
 }
 const isLow=s=>!!s&&s!==s.toUpperCase();
 function invInit(a){const m=S.mochila,rsv=ontReserv(a);if(!a.serieReal&&m.ont.length){const up=m.ont.filter(x=>!isLow(x)&&!rsv.has(x)&&!(m.falla||[]).includes(x));a.serieReal=pick(up.length?up:m.ont);
@@ -2073,7 +2082,7 @@ function llegar(a,cb){wait(a.eta!=null?Math.max(1,a.eta-S.clock):a.viajeMin,"Lle
   if(hasCas(a,"zona_insegura")&&!a.flags.insOk)a.ev="insegura";
   if(S.clock<a.ventana.ini){a.bonos.push("Llegó antes de la ventana: puede revisar la parte externa primero");hist(a,"Llegó antes de la ventana de servicio","ok");}
   else if(S.clock>a.ventana.fin)pen(a,"Llegó fuera de la ventana de servicio");cb();});}
-function firmaActa(a,c){a.flags.conformidad=c;markDone(a,"acta",3);sheet(`<h3>Acta firmada</h3><p>${esc(a.cliente.nombre)} firmó el acta: <b>${esc(c)}</b>. Se generó el PDF y se adjuntó a FO8 del Cierre Asegurado.</p>`,[{t:"Continuar",pri:true,fn:closeSheet}]);}
+function firmaActa(a,c){a.flags.conformidad=c;markDone(a,"acta",3);hist(a,"Acta guardada: ActaDeConformidad_"+a.id+".pdf","ok");sheet(`<h3>Acta guardada</h3><p>El acta se guardó en la actividad ${a.id} como <b>ActaDeConformidad_${a.id}.pdf</b>.</p><p>${esc(a.cliente.nombre)} firmó el acta: <b>${esc(c)}</b>. Se adjuntó a FO8 del Cierre Asegurado.</p>`,[{t:"Continuar",pri:true,fn:closeSheet}]);}
 function supervisor(a){wait(rnd(5,10),"El supervisor conversa con el cliente",()=>{pen(a,"El cliente necesitó al supervisor: malestar");firmaActa(a,"Conforme con observación");});}
 function hacerInicio(a){a.estado="iniciada";a.inicio=S.clock;a.ultimoAvance=S.clock;hist(a,"Inicio de actividad");render();toast("Actividad iniciada. Se habilitaron nuevos pasos.");}
 function clienteAusente(a){
@@ -2217,6 +2226,20 @@ setInterval(()=>{if(!S||!relojActivo())return;S._acc=(S._acc||0)+(S.vel||5)/60;i
   const ae=document.activeElement,typing=ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName);
   if(!typing||S._dirty){S._dirty=0;render();const m=document.getElementById("msgs");if(m)m.scrollTop=m.scrollHeight;}
   else{const sb=document.getElementById("sbt");if(sb)sb.textContent=hhmm(S.clock);const ck=document.querySelector(".sclock b");if(ck)ck.textContent=hhmm(S.clock);}},1000);
+
+/* ============ Lectura de serie con cámara (horizontal) ============ */
+function scanOk(key,el){
+  if(navigator.webdriver&&!window.__forceScan)return true;
+  if(window.__scanKey===key){window.__scanKey=null;return true;}
+  const sc=document.getElementById("layer").parentNode,old=document.getElementById("scanov");if(old)old.remove();
+  const o=document.createElement("div");o.id="scanov";o.className="scanov";
+  const w=sc.clientWidth,h=sc.clientHeight,ser=key.slice(1);
+  o.innerHTML=`<div class="scanrot" style="width:${h}px;height:${w}px"><div class="sct">Escanear serie · pantalla en horizontal</div><div class="scv"><svg viewBox="0 0 200 60" preserveAspectRatio="none">${Array.from({length:48},(_,i)=>`<rect x="${i*4+2}" y="6" width="${(i*7)%3+1}" height="48" fill="#fff"/>`).join("")}</svg><i class="scl"></i></div><div class="scs">Leyendo la serie…</div><div class="scn">${esc(ser)}</div></div>`;
+  sc.appendChild(o);
+  setTimeout(()=>{const t=o.querySelector(".scs");if(t)t.textContent="✓ Serie leída";},700);
+  setTimeout(()=>{o.remove();window.__scanKey=key;const nb=document.querySelector(`[data-${key[0]==="i"?"inst":"rinst"}="${ser}"]`)||el;nb.click();window.__scanKey=null;},1300);
+  return false;
+}
 function pedirValidacion(a){
   const c=a.ca,f=F(a,"ca");say(a,a.ordenTrabajo+" hola, validar fotos por favor",true);
   if(!a.chat.some(x=>x.sys))a.chat.push({sys:true,t:hhmm(S.clock)});
@@ -2230,7 +2253,7 @@ function validarCA(a){const c=a.ca,f=F(a,"ca");{
       const falta=caFO.filter(([k])=>!f[k]).map(([k])=>k.toUpperCase().replace("FO6","F06"));if(!a.done.acta)falta.push("FO8 (acta)");
       if(falta.length){c.estado="observada";say(a,"Falta(n): "+falta.join(", ")+". Complételas y vuelva a escribir.");pen(a,"Solicitó validación de Cierre Asegurado incompleto");return;}
       const obs=[];
-      if(!a.flags.conos||(a.fis&&a.fis.chk&&!a.fis.chk.cerc))obs.push(["fo1",a.red.tipo==="NAP"?"FO1 no se ve la zona señalizada con el cono":"FO1 no se ven los 4 conos y 4 barras"]);
+      if(!a.flags.conos||(a.fis&&a.fis.chk&&!a.fis.chk.cerc))obs.push(["fo1",a.red.tipo==="NAP"?"FO1 no se ve la zona señalizada con el cono":"FO1 no se ven los 6 conos y 6 barras"]);
       {const r7=(f.fo7||{}).res;if(!r7||r7.tipo!=="cable")obs.push(["fo7","FO7 la prueba de velocidad debe hacerse con el PDA conectado por cable de red"]);}
       if(!a.flags.medido)obs.push(["fo2","FO2 sin medición de potencia en la NAP"]);
       if(a.fis&&!a.fis.fibra)obs.push(["fo4","FO4/FO5 sin roseta ni ONT instaladas"]);
@@ -2245,7 +2268,7 @@ function validarCA(a){const c=a.ca,f=F(a,"ca");{
       if(a.fis&&a.fis.fibra&&!a.fis.limpio)obs.push(["fo5","FO5 la zona de trabajo quedó sucia"]);
       c.vtIni=hms(S.clock-2);
       if(obs.length){c.estado="observada";c.obs=obs.map(o=>o[0]);obs.forEach(o=>pen(a,"Foto observada por TCP: "+o[1]));say(a,"Observado: "+obs.map(o=>o[1]).join("; ")+". Corrija y vuelva a solicitar.");return;}
-      c.vt=true;c.obs=[];c.vtFin=hms(S.clock);hist(a,"Validación técnica terminada","ok");say(a,"todo bien");llamada(a,false);
+      c.vt=true;c.obs=[];c.vtFin=hms(S.clock);hist(a,"Validación técnica terminada","ok");say(a,"Conforme, se procede con llamada. Indica al cliente que para dicho cierre esté atento a su llamada.");llamada(a,false);
     }}
 
 /* ============ Consola del supervisor ============ */
@@ -2401,7 +2424,7 @@ document.addEventListener("click",e=>{
   if(D.photo){const [k,f]=D.photo.split("|"),prev=F(a,k)[f];F(a,k)[f]={t:hhmm(S.clock),lat:a.red.lat.toFixed(5),lon:a.red.lon.toFixed(5)};
     if(k==="ca"&&f==="fo7")F(a,k)[f].res=Object.assign({},a.speedRes);
     if(k==="nv"&&f==="foto")F(a,k)[f].falta=UNIF.find(x=>!S.mochila.epp[x])||null;adv(1);const p=document.getElementById("body").scrollTop;render();document.getElementById("body").scrollTop=p;return;}
-  if(D.inst){const f=F(a,"inv");if(a.flags.lowS&&!a.flags.lowFixed&&D.inst!==a.flags.lowS&&D.inst!==a.serieReal&&!a.flags.swap){a.serieReal=D.inst;hist(a,"Usó otra ONT del stock: "+D.inst);}
+  if(D.inst&&!scanOk("i"+D.inst,el))return;if(D.rinst&&!scanOk("r"+D.rinst,el))return;if(D.inst){const f=F(a,"inv");if(a.flags.lowS&&!a.flags.lowFixed&&D.inst!==a.flags.lowS&&D.inst!==a.serieReal&&!a.flags.swap){a.serieReal=D.inst;hist(a,"Usó otra ONT del stock: "+D.inst);}
     if((S.mochila.falla||[]).includes(D.inst)){render();return toast("Esa ONT está separada por falla: no la uses. Repórtala a Logística.");}if(ontReserv(a).has(D.inst)){render();return toast("Esa ONT está reservada para otra orden.");}
     if(a.flags.swap){const old=a.serie;if(old&&old!==D.inst){a.flags.ontFalla=old;S.mochila.falla=(S.mochila.falla||[]).filter(x=>x!==old).concat([old]);hist(a,"ONT "+old+" con falla: sepárala y repórtala a Logística");}a.serieReal=D.inst;a.flags.swap=false;a.flags.cambioEquipo=true;a.schaman="Sin enviar";delete a.done.activar;hist(a,"Cambio de equipo: instaló la ONT "+D.inst,"ok");}f.sel=D.inst;render();return;}
   if(D.rinst){F(a,"inv").rsel=D.rinst;render();return;}
@@ -2600,7 +2623,7 @@ function fisAccion(a,k){if(!a)return;S.fmenu=null;const f=a.fis,m=S.mochila,c=f.
     if(a.flags.atsStale&&!a.done.ft2&&!a.flags.atsStalePen){a.flags.atsStalePen=1;pen(a,"Seguridad: trabajó en altura con el ATS desactualizado (cambió el sitio)");}
     c.sub=1;f.loc="poste";};
   if(k==="tocar"){adv(2);SFX17.play("knock");S.fview="ext";if(hasCas(a,"cliente_ausente")&&!a.flags.clienteOk){cl.puerta="no";fisLog(a,"Tocaste la puerta: nadie abre.");}else{cl.puerta=1;fisLog(a,"Tocaste la puerta: te abren.");hist(a,"Contacto con el cliente en su domicilio","ok");}}
-  else if(k==="cercar"){adv(5);c.cerc=1;a.flags.conos=true;fisLog(a,a.red.tipo==="NAP"?"Zona señalizada con 1 cono.":"Área de trabajo cercada con 4 conos y 4 barras.");}
+  else if(k==="cercar"){adv(5);c.cerc=1;a.flags.conos=true;fisLog(a,a.red.tipo==="NAP"?"Zona señalizada con 1 cono.":"Área de trabajo cercada con 6 conos y 6 barras.");}
   else if(k==="subir"){adv(5);altura();S.fview="caja";fisLog(a,a.red.tipo==="NAP"?"Llegaste a la NAP del edificio.":"Subiste al poste con escalera de 3 sogas y EPP.");}
   else if(k==="perro"){a.flags.perroOk=1;cliSay(a,"et","Señora, ¿podría asegurar a su perro mientras trabajo, por favor?");cliSay(a,"cli","Claro, ya lo llevo al patio.");adv(2);}
   else if(k==="corr"){if(!a.flags.asigVisto&&!a.flags.asigPen){a.flags.asigPen=1;pen(a,"Fue a la CTO sin revisar la Asignación de recursos (Información WiNET)");}adv(3);
@@ -2785,7 +2808,7 @@ const TIPS=[
 [/Responsable de No realizado|Suspender: el responsable/i,"El responsable debe corresponder al motivo para que la orden se gestione con el área correcta.","Revisa el motivo y elige el responsable que le corresponde."],
 [/serie en minúscula/i,"Una serie en minúscula no es reconocida por el sistema: la validación sale NOK.","No uses esa ONT: repórtala a Logística y usa otra del stock."],
 
- [/cercar|conos/i,"Sin señalizar, pones en riesgo a peatones y a ti mismo.","Cerca con 4 conos y 4 barras (edificio: 1 cono) antes de subir o trabajar."],
+ [/cercar|conos/i,"Sin señalizar, pones en riesgo a peatones y a ti mismo.","Cerca con 6 conos y 6 barras (edificio: 1 cono) antes de subir o trabajar."],
  [/lluvia|riesgo eléctrico|poste inclinado|altura/i,"Trabajo en altura con riesgo: es causa principal de accidentes.","No subas; avisa al Supervisor ET y espera su indicación."],
  [/manejando/i,"Usar el celular al manejar es una falta grave de seguridad vial.","Estaciónate antes de responder mensajes o llamadas."],
  [/ATS/i,"El ATS debe reflejar los riesgos reales del lugar.","Observa la escena y marca en Fuerza terreno 2 todos los riesgos presentes, y solo esos."],
@@ -3191,7 +3214,7 @@ const TQH={
 
 /* ---- Charla de seguridad de las 08:00 ---- */
 const CHARLAS=[
-  ["Trabajo en altura","Antes de subir: cerca con 4 conos y 4 barras, revisa que la escalera tenga sus 3 sogas y usa arnés, casco y freno de vida. Con lluvia, poste inclinado o cables de media tensión no se sube: avisa a tu supervisor.","¿Qué haces si al llegar al poste empieza a llover?",["No subo y aviso a mi supervisor","Subo rápido antes de que llueva más","Subo solo si tengo casco"]],
+  ["Trabajo en altura","Antes de subir: cerca con 6 conos y 6 barras, revisa que la escalera tenga sus 3 sogas y usa arnés, casco y freno de vida. Con lluvia, poste inclinado o cables de media tensión no se sube: avisa a tu supervisor.","¿Qué haces si al llegar al poste empieza a llover?",["No subo y aviso a mi supervisor","Subo rápido antes de que llueva más","Subo solo si tengo casco"]],
   ["Manejo defensivo","El celular no se usa manejando: ni WhatsApp, ni llamadas, ni el aplicativo. Si necesitas responder, te estacionas en un lugar seguro. Respeta la velocidad y revisa la camioneta antes de salir.","¿Cuándo puedes responder un WhatsApp de tu supervisor?",["Solo cuando estoy estacionado","En un semáforo en rojo","Con el altavoz, manejando despacio"]],
   ["Riesgo eléctrico","Identifica los cables de media tensión antes de trabajar. Mantén la distancia, no bolees cerca de cables eléctricos y márcalos en el ATS. Si el riesgo es alto, no subas y coordina con tu supervisor.","Ves cables de media tensión junto a la CTO. ¿Qué haces?",["No subo, lo marco en el ATS y aviso a mi supervisor","Subo con guantes y trabajo con cuidado","Subo sin escalera para ir más rápido"]],
   ["Trato al cliente","Saluda por su nombre, preséntate con tu fotocheck, pide permiso para ingresar y explica antes de hacer. Nunca aceptes propinas ni entregues la clave de administración del router.","El cliente te ofrece S/ 20 de propina. ¿Qué haces?",["Agradezco y no la acepto","La acepto para no hacerle un desaire","La acepto y no se lo digo a nadie"]]];
@@ -3440,7 +3463,7 @@ function fisList(a){const f=a.fis,c=f.chk||(f.chk={}),e=f.eva||(f.eva={}),L=[],c
   if(V&&cl.puerta!==1)return L;
   if((a.riesgos||[]).includes("perro")&&cl.puerta===1&&!a.flags.perroOk)L.push(["perro","🐕 Pedir al cliente que asegure al perro"]);
   if(!f.drop){
-    if(!c.cerc)L.push(["cercar",V?"🚧 Señalizar la zona con 1 cono":"🚧 Cercar el área de trabajo (4 conos y 4 barras)"]);
+    if(!c.cerc)L.push(["cercar",V?"🚧 Señalizar la zona con 1 cono":"🚧 Cercar el área de trabajo (6 conos y 6 barras)"]);
     if(!c.sub)L.push(["subir",V?"🏢 Ir al montante (registro con la NAP)":"🪜 Subir al poste (escalera con 3 sogas y EPP)"]);
     if(!f.nap)L.push(["corr","🔎 Revisar que la "+T+" corresponda (nombre e IDELEM)"]);
     else{const mine=a.net[a.red.puerto-1],libres=a.net.filter(x=>x.st==="LIB"||(x.p===a.red.puerto&&x.st==="OCU")).length;
@@ -4013,8 +4036,8 @@ try{render();}catch(e){}
   return r0;};}
 
 /* ============ v38 · tiempos por nivel, intentos, ranking por niveles, panel PO ampliado ============ */
-var GSCFG={avance_min:20,limite_pen:3};
-function AVL(){return (window.GSCFG&&GSCFG.avance_min)||20;}
+var GSCFG={avance_min:30,limite_pen:3};
+function AVL(){return (window.GSCFG&&GSCFG.avance_min)||30;}
 function gsCfg(){gsApi("/config").then(c=>{if(c&&c.avance_min)GSCFG.avance_min=+c.avance_min;if(c&&c.limite_pen!=null)GSCFG.limite_pen=+c.limite_pen;}).catch(()=>{});}
 gsCfg();
 /* tiempo activo: solo cuenta con la app visible y con actividad en los últimos 2,5 min */
@@ -4079,7 +4102,7 @@ function gsPoHtml(){
   else if(GS.tab==="h"){h+=`<div class="gsflt">${["","Recibida","Validada","Implementada","Descartada"].map(e=>`<button type="button" data-gs="poflt" data-v="${e}" class="${GS.flt===e?"on":""}">${e||"Todas"}${e?" "+cnt(e):" "+hz.length}</button>`).join("")}</div>`;
     const L=hz.filter(x=>!GS.flt||x.estado===GS.flt);
     h+=L.length?L.map(x=>`<div class="gsca"><div class="gscah"><span class="gse ${gsEst[x.estado]||""}">${esc(x.estado)}</span><b>${esc(x.nombre||x.dni)}</b></div><small>${esc(gsTipo(x.tipo))} · ${esc(x.pantalla||"")}${x.orden?" · OT "+esc(x.orden):""}</small><p>${esc(x.descripcion)}</p>${x.mostrar_como?`<small>Créditos como: ${esc(x.mostrar_como)}</small>`:""}<input data-gsn="${x.id}" maxlength="200" placeholder="Nota del PO (opcional)" value="${esc(x.nota_po||"")}"><div class="gsac"><button type="button" data-gs="poest" data-id="${x.id}" data-v="Validada">Validar</button><button type="button" data-gs="poest" data-id="${x.id}" data-v="Implementada">Implementada</button><button type="button" data-gs="poest" data-id="${x.id}" data-v="Descartada">Descartar</button></div></div>`).join(""):`<p class="gsm">Sin hazañas en este filtro.</p>`;}
-  else if(GS.tab==="a"){const c=GS.data.cfg||{avance_min:20,limite_pen:3},a=GS.cfgA??c.avance_min,l=GS.cfgL??c.limite_pen;
+  else if(GS.tab==="a"){const c=GS.data.cfg||{avance_min:30,limite_pen:3},a=GS.cfgA??c.avance_min,l=GS.cfgL??c.limite_pen;
     h+=`<div class="gsca"><b>Informe de avance cada <span id="gsAv">${a}</span> min</b><small>Aviso en el celular 5 min antes. Vale para todos desde su próxima partida.</small><input type="range" min="10" max="40" step="1" value="${a}" data-gsl="a"></div>
     <div class="gsca"><b>Límite de penalidades para el ranking: <span id="gsLm2">${l}</span></b><small>Si la orden cierra con más penalidades que este límite, el tiempo no cuenta.</small><input type="range" min="0" max="20" step="1" value="${l}" data-gsl="l"></div>
     <button type="button" class="gsgo" data-gs="poajus">Guardar ajustes</button>`;}
@@ -4090,7 +4113,7 @@ function gsPoHtml(){
 document.addEventListener("input",e=>{const t=e.target.closest&&e.target.closest("[data-gsl]");if(!t)return;if(t.dataset.gsl==="a"){GS.cfgA=+t.value;const s=document.getElementById("gsAv");if(s)s.textContent=t.value;}else{GS.cfgL=+t.value;const s=document.getElementById("gsLm2");if(s)s.textContent=t.value;}},true);
 document.addEventListener("click",e=>{const t=e.target.closest("[data-gs]");if(!t)return;const k=t.dataset.gs,v=t.dataset.v;
   if(k==="pocorr"){const n=document.querySelector('[data-gsc="'+t.dataset.id+'"]');gsPoCall({accion:"correctivo",id:+t.dataset.id,estado:v,nota:n?n.value:""});}
-  else if(k==="poajus"){const c=GS.data.cfg||{};gsPoCall({accion:"config",avance_min:GS.cfgA??c.avance_min??20,limite_pen:GS.cfgL??c.limite_pen??3},r=>{if(r.avance_min)GSCFG.avance_min=r.avance_min;if(r.limite_pen!=null)GSCFG.limite_pen=r.limite_pen;GS.cfgA=GS.cfgL=undefined;GS.msg="Ajustes guardados.";});}
+  else if(k==="poajus"){const c=GS.data.cfg||{};gsPoCall({accion:"config",avance_min:GS.cfgA??c.avance_min??30,limite_pen:GS.cfgL??c.limite_pen??3},r=>{if(r.avance_min)GSCFG.avance_min=r.avance_min;if(r.limite_pen!=null)GSCFG.limite_pen=r.limite_pen;GS.cfgA=GS.cfgL=undefined;GS.msg="Ajustes guardados.";});}
 },true);
 try{gsFlush();}catch(e){}
 
